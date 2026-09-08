@@ -13,11 +13,13 @@ import { productSchema, filterProducts } from './lib/products.js';
 import { languages, t, localized, categoryName, propertyText, money } from './lib/i18n.js';
 import { authConfigured, createSessionStore, equal, csrfToken, requireAdmin, requireCSRF } from './lib/security.js';
 export const app=express();
+app.set('case sensitive routing',true);
+app.use(['/admin','/api/admin'],(req,res,next)=>{res.set('Cache-Control','no-store');res.set('X-Robots-Tag','noindex, nofollow');next();});
 const production=process.env.NODE_ENV==='production';
 if(production&&(!process.env.SITE_URL||!process.env.SITE_URL.startsWith('https://')))throw new Error('Production requires HTTPS SITE_URL');
 if(process.env.TRUST_PROXY==='1')app.set('trust proxy',1);
 app.disable('x-powered-by');app.set('view engine','ejs');app.set('views',path.resolve('views'));
-app.use(helmet({contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'"],styleSrc:["'self'"],imgSrc:["'self'",'data:'],fontSrc:["'self'"],connectSrc:["'self'"],objectSrc:["'none'"],frameAncestors:["'none'"],upgradeInsecureRequests:production?[]:null}},strictTransportSecurity:production?undefined:false}));
+app.use(helmet({referrerPolicy:{policy:'strict-origin-when-cross-origin'},contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'"],styleSrc:["'self'"],imgSrc:["'self'",'data:'],fontSrc:["'self'"],connectSrc:["'self'"],objectSrc:["'none'"],frameAncestors:["'none'"],upgradeInsecureRequests:production?[]:null}},strictTransportSecurity:production?undefined:false}));
 app.use(express.static('public',{maxAge:production?'1d':0,index:false}));
 app.use(express.urlencoded({extended:false,limit:'200kb'}));app.use(express.json({limit:'250kb'}));
 const sessionMiddleware=session({name:'ayva.sid',secret:process.env.SESSION_SECRET||randomBytes(48).toString('hex'),resave:false,saveUninitialized:false,store:createSessionStore(),cookie:{httpOnly:true,secure:production,sameSite:'strict',maxAge:8*60*60*1000}});
@@ -40,21 +42,23 @@ app.get('/language/:lang',(req,res)=>{
   let next=typeof req.query.next==='string'?req.query.next:'/';
   if(!/^\/(?!\/)/.test(next)||/[\\\r\n]/.test(next))next='/';
   next=next.replace(/^\/(az|ru|en)(?=\/|\?|$)/,'')||'/';
+  if(!/^\/(?!\/)/.test(next)||/[\\\r\n]/.test(next))next='/';
   res.cookie('ayva.lang',req.params.lang,{maxAge:365*86400000,sameSite:'lax',secure:production,httpOnly:true});
   res.redirect(/^\/(admin|api)(\/|$)/.test(next)?next:prefix(req.params.lang)+next);
 });
 async function render(req,res,view,data={}){
   const shop=await readShop();
   const lang=req.lang, route=req.publicPath;
-  const canonical=baseURL()+prefix(lang)+route;
+  const page = route==='/catalog' && Number(req.query.page)>1 ? `?page=${Math.floor(Number(req.query.page))}` : '';
+  const canonical=baseURL()+prefix(lang)+route+page;
   const title=data.title||`${t('catalog',lang)} | AyvaTech`;
   const description=data.metaDescription||`${localized(shop.promo,lang)} ${t('heroText',lang)}`;
   const image=data.product?.images[0]?.src||shop.logo.src;
   const organization={'@context':'https://schema.org','@type':'Store','@id':baseURL()+'/#organization',name:shop.name,url:baseURL(),logo:baseURL()+shop.logo.src,image:baseURL()+shop.cover.src,telephone:shop.phones[0],address:{'@type':'PostalAddress',streetAddress:shop.address,addressLocality:'Bakı',addressCountry:'AZ'},geo:{'@type':'GeoCoordinates',latitude:shop.latitude,longitude:shop.longitude},sameAs:[shop.sourceUrl]};
   const structured=[organization];
-  if(route!=='/')structured.push({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:t('home',lang),item:baseURL()+prefix(lang)+'/'},{'@type':'ListItem',position:2,name:t('catalog',lang),item:baseURL()+prefix(lang)+'/catalog'},...(data.product?[{'@type':'ListItem',position:3,name:localized(data.product.title,lang),item:canonical}]:[])]});
+  if(route!=='/')structured.push({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:t('home',lang),item:baseURL()+prefix(lang)+'/'},{'@type':'ListItem',position:2,name:t(data.product?'catalog':route.slice(1),lang),item:data.product?baseURL()+prefix(lang)+'/catalog':canonical},...(data.product?[{'@type':'ListItem',position:3,name:localized(data.product.title,lang),item:canonical}]:[])]});
   if(data.product){const p=data.product;structured.push({'@context':'https://schema.org','@type':'Product',name:localized(p.title,lang),description:localized(p.description,lang),image:p.images.map(i=>baseURL()+i.src),sku:p.id,...(p.brand?{brand:{'@type':'Brand',name:p.brand}}:{}),offers:{'@type':'Offer',price:p.price,priceCurrency:p.currency,url:canonical,...(p.availability?{availability:`https://schema.org/${p.availability}`}:{})}});}
-  res.render(view,{shop,title,metaDescription:description.slice(0,180),canonical,ogImage:baseURL()+image,alternates:languages.map(l=>({lang:l,url:baseURL()+prefix(l)+route})),structured,baseURL:baseURL(),noindex:false,product:null,error:null,csrf:req.session?csrfToken(req):'',...data});
+  res.render(view,{shop,title,metaDescription:description.slice(0,180),canonical,ogImage:baseURL()+image,alternates:languages.map(l=>({lang:l,url:baseURL()+prefix(l)+route+page})),structured,baseURL:baseURL(),noindex:false,product:null,error:null,csrf:req.session?csrfToken(req):'',...data});
 }
 app.get('/robots.txt',(req,res)=>res.type('text').send(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /language/\nSitemap: ${baseURL()}/sitemap.xml\n`));
 app.get('/sitemap.xml',async(req,res)=>{
@@ -77,7 +81,8 @@ app.put('/api/admin/products/:id',requireCSRF,async(req,res)=>{
   const parsed=productSchema.safeParse(req.body.product);
   if(!parsed.success)return res.status(400).json({error:parsed.error.issues.map(i=>`${i.path.join('.')}: ${i.message}`).join('; ')});
   const p=parsed.data;if(p.id!==req.params.id)return res.sendStatus(400);
-  for(const image of p.images)for(const file of [image.src,image.original,...image.variants.map(v=>v.src)])await access(path.join('public',file));
+  try { for(const image of p.images)for(const file of [image.src,image.original,...image.variants.map(v=>v.src)])await access(path.join('public',file)); }
+  catch { return res.status(400).json({error:t('imageInvalid',req.lang)}); }
   const products=await mutateProducts(req.body.revision,products=>{
     const index=products.findIndex(x=>x.id===p.id);
     if(index<0){delete p.sourceId;delete p.sourceUrl;delete p.sourceHash;p.importedAt=new Date().toISOString();products.push(p);}
@@ -88,11 +93,14 @@ app.put('/api/admin/products/:id',requireCSRF,async(req,res)=>{
 app.delete('/api/admin/products/:id',requireCSRF,async(req,res)=>{const products=await mutateProducts(req.body.revision,products=>products.filter(p=>p.id!==req.params.id));res.json({ok:true,revision:revision(products)});});
 const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:8*1024*1024,files:10},fileFilter:(req,file,cb)=>cb(null,['image/jpeg','image/png','image/webp'].includes(file.mimetype))});
 app.post('/api/admin/images',requireCSRF,upload.array('images',10),async(req,res)=>{
-  if(!req.files?.length)return res.status(400).json({error:'JPEG, PNG or WebP required'});
+  if(!req.files?.length)return res.status(400).json({error:t('imageInvalid',req.lang)});
   const images=[];
   for(const file of req.files){
-    const processor=sharp(file.buffer,{limitInputPixels:40000000,animated:false}).rotate();const metadata=await processor.metadata();
-    if(!['jpeg','png','webp'].includes(metadata.format)||metadata.pages>1)return res.status(400).json({error:'Unsupported image format'});
+    const processor=sharp(file.buffer,{limitInputPixels:40000000,animated:false}).rotate();
+    let metadata;
+    try { metadata=await processor.metadata(); await processor.clone().resize(1,1).toBuffer(); }
+    catch { return res.status(400).json({error:t('imageInvalid',req.lang)}); }
+    if(!['jpeg','png','webp'].includes(metadata.format)||metadata.pages>1)return res.status(400).json({error:t('imageInvalid',req.lang)});
     const base='/media/admin-'+randomUUID();await mkdir('public/media',{recursive:true});
     const original=base+'-original.jpg';await processor.clone().jpeg({quality:92}).toFile('public'+original);
     const variants=[];for(const width of [320,640,1280]){const src=`${base}-${width}.webp`;await processor.clone().resize(width).webp({quality:84}).toFile('public'+src);variants.push({width,src});}

@@ -9,3 +9,6 @@ playwright-report/
 desktop.ini
 data/sessions/
 public/media/admin/
+public/media/admin-*
+data/*.lock
+data/*.tmp
