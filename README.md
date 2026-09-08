@@ -1,4 +1,4 @@
-# AyvaTech
+# ayvatech
 
 Multilingual server-rendered storefront for [AyvaTech on Tap.az](https://tap.az/shops/ayvatech?user_id=31349132). Express 5, EJS, local JSON storage, SQLite sessions, Sharp image variants and Playwright checks. No GitHub token is needed or consumed by this architecture.
 
