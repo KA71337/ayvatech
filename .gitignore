@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+.cache/
+.test-data/
+test-results/
+playwright-report/
+*.log
+desktop.ini
+data/sessions/
+public/media/admin/

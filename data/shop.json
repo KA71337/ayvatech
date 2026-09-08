@@ -1,0 +1,113 @@
+{
+  "name": "Ayvatech",
+  "promo": {
+    "az": "Keyfiyyətli elektronika, sərfəli qiymət!",
+    "ru": "Качественная электроника по доступной цене!",
+    "en": "Quality electronics at affordable prices!"
+  },
+  "description": "",
+  "address": "Bakı ş., Yasamal r., Azərbaycan pr., Həzi Aslanov küç., 7",
+  "phones": [
+    "(010) 888-23-13"
+  ],
+  "workingDays": "Bazar ertəsi - Bazar",
+  "workingHours": "09:00-21:00",
+  "schedule": [
+    {
+      "__typename": "ShopSchedule",
+      "dayOfWeek": "MONDAY",
+      "openTime": "09:00",
+      "closeTime": "21:00",
+      "checked": true
+    },
+    {
+      "__typename": "ShopSchedule",
+      "dayOfWeek": "TUESDAY",
+      "openTime": "09:00",
+      "closeTime": "21:00",
+      "checked": true
+    },
+    {
+      "__typename": "ShopSchedule",
+      "dayOfWeek": "WEDNESDAY",
+      "openTime": "09:00",
+      "closeTime": "21:00",
+      "checked": true
+    },
+    {
+      "__typename": "ShopSchedule",
+      "dayOfWeek": "THURSDAY",
+      "openTime": "09:00",
+      "closeTime": "21:00",
+      "checked": true
+    },
+    {
+      "__typename": "ShopSchedule",
+      "dayOfWeek": "FRIDAY",
+      "openTime": "09:00",
+      "closeTime": "21:00",
+      "checked": true
+    },
+    {
+      "__typename": "ShopSchedule",
+      "dayOfWeek": "SATURDAY",
+      "openTime": "09:00",
+      "closeTime": "21:00",
+      "checked": true
+    },
+    {
+      "__typename": "ShopSchedule",
+      "dayOfWeek": "SUNDAY",
+      "openTime": "09:00",
+      "closeTime": "21:00",
+      "checked": true
+    }
+  ],
+  "latitude": "40.372555",
+  "longitude": "49.833405",
+  "logo": {
+    "src": "/media/logo-66d581ba5844fd89-1280.webp",
+    "original": "/media/logo-66d581ba5844fd89-original.jpg",
+    "sourceUrl": "https://tap.azstatic.com/uploads/o350x350/2026%2F07%2F23%2F14%2F56%2F21%2Fdbec6b96-a444-4c41-a242-5b0b253155d4%2F53178_1rgd17fQOV-U0X2QIWITAw.jpg",
+    "width": 1280,
+    "height": 1280,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/media/logo-66d581ba5844fd89-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/media/logo-66d581ba5844fd89-640.webp"
+      },
+      {
+        "width": 1280,
+        "src": "/media/logo-66d581ba5844fd89-1280.webp"
+      }
+    ]
+  },
+  "cover": {
+    "src": "/media/cover-5f13b0d3ec3ff1a1-1280.webp",
+    "original": "/media/cover-5f13b0d3ec3ff1a1-original.jpg",
+    "sourceUrl": "https://tap.azstatic.com/uploads/f1000x266/2026%2F07%2F23%2F14%2F56%2F27%2F82586e0a-112f-4c18-b403-42bcf87f3bf7%2F93740_FdHsuV5hZoSCCLS8jSfvnA.jpg",
+    "width": 1280,
+    "height": 340,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/media/cover-5f13b0d3ec3ff1a1-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/media/cover-5f13b0d3ec3ff1a1-640.webp"
+      },
+      {
+        "width": 1280,
+        "src": "/media/cover-5f13b0d3ec3ff1a1-1280.webp"
+      }
+    ]
+  },
+  "sourceUrl": "https://tap.az/shops/ayvatech?user_id=31349132",
+  "sourceCount": 33,
+  "fetchedAt": "2026-09-08T09:10:21.015Z"
+}
