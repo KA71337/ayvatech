@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';
-import { mkdir, copyFile, readFile, unlink, writeFile } from 'node:fs/promises';
+import { mkdir, copyFile, readFile, writeFile } from 'node:fs/promises';
+import { build } from './build.js';
+import { createPreview } from './preview.js';
+import { createAdminHandler } from '../api/admin.js';
+import { githubFixture } from '../tests/helpers/github-fixture.js';
 import path from 'node:path';
 import { randomBytes } from 'node:crypto';
 import { chromium, expect } from '@playwright/test';
@@ -8,18 +12,31 @@ import { t, localized, money, categoryName, propertyText } from '../lib/i18n.js'
 const dir = path.resolve('.test-data', `e2e-${Date.now()}`);
 await mkdir(dir, {recursive:true});
 for (const file of ['products.json','shop.json']) await copyFile(`data/${file}`, path.join(dir,file));
-process.env.DATA_DIR=dir;
 process.env.ADMIN_PASSWORD=randomBytes(24).toString('hex');
 process.env.SESSION_SECRET=randomBytes(48).toString('hex');
 process.env.NODE_ENV='test';
-const { app }=await import('../server.js');
-const server=app.listen(0,'127.0.0.1');
+process.env.GITHUB_TOKEN='isolated-test-placeholder';
+process.env.GITHUB_OWNER='test-owner'; process.env.GITHUB_REPO='test-repo'; process.env.GITHUB_BRANCH='main';
+process.env.GITHUB_PRODUCTS_PATH='data/products.json';
+const canonicalOrigin='https://ayvatech.vercel.app';
+process.env.SITE_URL=canonicalOrigin;
+const fixture=await githubFixture(dir);
+const outputDirectory=path.join(dir,'dist');
+async function redeploy() {
+  const origin=process.env.SITE_URL;
+  process.env.SITE_URL=canonicalOrigin;
+  try { await build({dataDirectory:dir,outputDirectory,mediaDirectory:fixture.mediaDirectory}); }
+  finally {process.env.SITE_URL=origin;}
+}
+await redeploy();
+const server=createPreview({adminHandler:createAdminHandler(fixture.github),directory:outputDirectory,mediaDirectory:fixture.mediaDirectory});
+server.listen(0,'127.0.0.1');
 await new Promise(resolve=>server.once('listening',resolve));
 const base=`http://127.0.0.1:${server.address().port}`;
 process.env.SITE_URL=base;
 const products=JSON.parse(await readFile('data/products.json','utf8'));
 const multi=products.find(p=>p.images.length>1);
-const uploaded=[];
+const savedMessage=t('saved','az')+' Saved to GitHub. Public pages update after the Vercel deployment completes.';
 let browser;
 const summary={productPages:0,responsivePages:0,widths:[320,375,390,430,768,1024,1440],browserErrors:[]};
 try {
@@ -61,7 +78,7 @@ try {
     assert.deepEqual($('.spec-table dt').toArray().slice(0,p.properties.length).map(el=>$(el).text()),p.properties.map(s=>propertyText(s.name,lang)));
     assert.deepEqual($('.spec-table dd').toArray().slice(0,p.properties.length).map(el=>$(el).text()),p.properties.map(s=>propertyText(s.value,lang)));
     assert.equal($('.product-summary > .eyebrow').text(),categoryName(p.category,lang));
-    assert.equal($('link[rel=canonical]').attr('href'),base+url);
+    assert.equal($('link[rel=canonical]').attr('href'),canonicalOrigin+url);
     assert.equal($('link[hreflang]').length,4);
     const json=JSON.parse($('script[type="application/ld+json"]').text());
     assert.equal(json.find(x=>x['@type']==='Product').offers.price,p.price);
@@ -94,7 +111,7 @@ try {
     await page.goto('/');await expect(page.locator('html')).toHaveAttribute('lang',lang);
   }
   await visit('/catalog');await page.locator('#category').selectOption(products[0].categorySlug);await page.locator('#brand').selectOption(products[0].brand);await page.locator('input[name=min]').fill(String(products[0].price));await page.locator('input[name=max]').fill(String(products[0].price));await page.locator('.filters button[type=submit]').click();await expect(page.locator('.product-card')).not.toHaveCount(0);
-  await visit('/catalog?page=2');await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href',base+'/catalog?page=2');
+  await visit('/catalog?page=2');await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href',canonicalOrigin+'/catalog?page=2');
   await visit('/catalog?q=no-such-product-xyz');await expect(page.locator('.empty-state')).toBeVisible();
   const sitemap=await context.request.get('/sitemap.xml');assert.equal(sitemap.status(),200);assert.equal(load(await sitemap.text(),{xmlMode:true})('url').length,(products.length+4)*3);
   const robots=await context.request.get('/robots.txt');assert.match(await robots.text(),/Disallow: \/admin/);
@@ -102,20 +119,23 @@ try {
   assert.equal((await context.request.get('/api/admin/products')).status(),401);
   assert.equal((await context.request.put('/api/admin/products/not-existing',{data:{}})).status(),401);
   assert.equal((await context.request.post('/api/admin/images',{multipart:{images:{name:'x.svg',mimeType:'image/svg+xml',buffer:Buffer.from('<svg/>')}}})).status(),401);
+  // Language links are now static local URLs, not an open-redirect endpoint.
   for(const next of ['//outside.example','/ru//outside.example','/en/\\outside.example']) {
-    const redirect=await context.request.get('/language/az?next='+encodeURIComponent(next),{maxRedirects:0});
-    assert.equal(redirect.headers().location,'/');
+    const response=await context.request.get('/language/az?next='+encodeURIComponent(next),{maxRedirects:0});
+    assert.equal(response.status(),404);
+    assert.equal(response.headers().location,undefined);
   }
+  assert.equal(fixture.calls.length,0,'Public pages and unauthenticated requests must never call GitHub');
   await page.goto('/admin');await expect(page).toHaveURL(/\/admin\/login$/);
   const sessionBefore=(await context.cookies()).find(c=>c.name==='ayva.sid').value;
-  assert.equal((await context.request.post('/admin/login',{form:{password:process.env.ADMIN_PASSWORD}})).status(),403);
+  assert.equal((await context.request.post('/api/admin/login',{form:{password:process.env.ADMIN_PASSWORD}})).status(),403);
   await page.locator('#password').fill(process.env.ADMIN_PASSWORD);await page.locator('button[type=submit]').click();await expect(page).toHaveURL(/\/admin$/);
   const sessionCookie=(await context.cookies()).find(c=>c.name==='ayva.sid');assert.notEqual(sessionCookie.value,sessionBefore);assert.equal(sessionCookie.httpOnly,true);assert.equal(sessionCookie.sameSite,'Strict');
   let token=await page.locator('meta[name=csrf-token]').getAttribute('content');
   assert.equal((await context.request.put('/api/admin/products/test',{data:{}})).status(),403);
   assert.equal((await context.request.post('/api/admin/images',{headers:{'x-csrf-token':token,origin:'https://invalid.example'},multipart:{images:{name:'x.png',mimeType:'image/png',buffer:Buffer.from('bad')}}})).status(),403);
-  assert.equal((await context.request.post('/api/admin/images',{headers:{'x-csrf-token':token},multipart:{images:{name:'x.svg',mimeType:'image/svg+xml',buffer:Buffer.from('<svg/>')}}})).status(),400);
-  assert.equal((await context.request.post('/api/admin/images',{headers:{'x-csrf-token':token},multipart:{images:{name:'invalid.jpg',mimeType:'image/jpeg',buffer:Buffer.from('not an image')}}})).status(),400);
+  assert.equal((await context.request.post('/api/admin/images',{headers:{'x-csrf-token':token},data:{content:Buffer.from('<svg/>').toString('base64')}})).status(),400);
+  assert.equal((await context.request.post('/api/admin/images',{headers:{'x-csrf-token':token},data:{content:Buffer.from('not an image').toString('base64')}})).status(),400);
   await page.locator('a[href="/admin/product/new"]').click();
   const original=products[0];
   await page.locator('#title-az').fill(original.title.az+' <script>alert(1)</script>');
@@ -128,33 +148,45 @@ try {
   await page.locator('#price').fill(String(original.price));
   await page.locator('#status').selectOption('published');
   await page.locator('#add-spec').click();await page.locator('[data-spec-field=name]').fill('Model');await page.locator('[data-spec-field=value]').fill(original.title.az);
-  const uploadResponse=page.waitForResponse(r=>r.url().endsWith('/api/admin/images')&&r.request().method()==='POST');
-  await page.locator('#image-upload').setInputFiles(['public'+original.images[0].original,'public'+multi.images[1].original]);
-  const uploadedData=await (await uploadResponse).json();assert.equal(uploadedData.images.length,2);uploaded.push(...uploadedData.images.flatMap(i=>[i.original,...i.variants.map(v=>v.src)]));
+  const uploadedData={images:[]};
+  for (const file of ['public'+original.images[0].original,'public'+multi.images[1].original]) {
+    const uploadResponse=page.waitForResponse(r=>r.url().endsWith('/api/admin/images')&&r.request().method()==='POST');
+    await page.locator('#image-upload').setInputFiles(file);
+    const response=await uploadResponse; assert.equal(response.status(),200);
+    uploadedData.images.push(...(await response.json()).images);
+    await expect(page.locator('#image-upload')).toBeEnabled();
+  }
+  assert.equal(uploadedData.images.length,2);
   await expect(page.locator('.editor-image')).toHaveCount(2);await page.locator('.image-actions button').nth(1).click();
   await page.locator('.editor-image').nth(1).locator('.image-actions button').last().click();await expect(page.locator('.editor-image')).toHaveCount(1);
   await page.locator('button[type=submit]').click();await expect(page).toHaveURL(/\/admin\/product\/manual-/);
   const id=page.url().split('/').at(-1);
   await expect(page.locator('#editor-images img').first()).toHaveAttribute('src',uploadedData.images[1].src);
   await page.locator('#price').fill(String(original.price+10));await page.locator('#description-en').fill('Isolated test description');
-  await page.locator('button[type=submit]').click();await expect(page.locator('#editor-message')).toHaveText(t('saved','az'));
+  await page.locator('button[type=submit]').click();await expect(page.locator('#editor-message')).toHaveText(savedMessage);
   let stored=await (await context.request.get('/api/admin/products')).json();assert.equal(stored.products.find(p=>p.id===id).price,original.price+10);
   assert.equal((await context.request.put(`/api/admin/products/${id}`,{headers:{'x-csrf-token':token},data:{product:stored.products.find(p=>p.id===id),revision:'stale'}})).status(),409);
   assert.equal((await context.request.put(`/api/admin/products/${id}`,{headers:{'x-csrf-token':token},data:{product:{...stored.products.find(p=>p.id===id),price:-1},revision:stored.revision}})).status(),400);
   for(const width of summary.widths){await page.setViewportSize({width,height:900});await noOverflow(`admin editor ${width}`);}
+  assert.equal((await context.request.get('/product/e2e-isolated-product')).status(),404,'Public data must not change until a deployment');
+  assert.equal(JSON.parse(await readFile(path.join(dir,'products.json'),'utf8')).find(p=>p.id===id).price,original.price+10);
+  await redeploy();
   await visit('/product/e2e-isolated-product');await expect(page.locator('h1')).toHaveText(original.title.az+' <script>alert(1)</script>');assert.equal(await page.locator('h1 script').count(),0);
   await visit('/en/product/e2e-isolated-product');await expect(page.locator('h1')).toHaveText('Localization test');await expect(page.locator('.description-text')).toHaveText('Isolated test description');
   await visit('/'); // A published manual product has no sourceUpdatedAt.
-  await visit(`/admin/product/${id}`);await page.locator('#status').selectOption('draft');await page.locator('button[type=submit]').click();await expect(page.locator('#editor-message')).toHaveText(t('saved','az'));assert.equal((await context.request.get('/product/e2e-isolated-product')).status(),404);
+  await visit(`/admin/product/${id}`);await page.locator('#status').selectOption('draft');await page.locator('button[type=submit]').click();await expect(page.locator('#editor-message')).toHaveText(savedMessage);
+  assert.equal((await context.request.get('/product/e2e-isolated-product')).status(),200,'Old deployment stays available until rebuild');
+  await redeploy();
+  assert.equal((await context.request.get('/product/e2e-isolated-product')).status(),404);
   await visit('/'); // Regression: manually created products do not require sourceUpdatedAt.
   await visit(`/admin/product/${id}`);page.once('dialog',dialog=>dialog.accept());await page.locator('#delete-product').click();await expect(page).toHaveURL(/\/admin$/);
   stored=await (await context.request.get('/api/admin/products')).json();assert.ok(!stored.products.some(p=>p.id===id));assert.equal(stored.products.length,products.length);
-  await page.locator('form[action="/admin/logout"] button').click();await expect(page).toHaveURL(/\/admin\/login$/);assert.equal((await context.request.get('/api/admin/products')).status(),401);
+  await page.locator('form[action="/api/admin/logout"] button').click();await expect(page).toHaveURL(/\/admin\/login$/);assert.equal((await context.request.get('/api/admin/products')).status(),401);
   assert.deepEqual(summary.browserErrors,[]);
   summary.status='passed';await writeFile(path.join(dir,'report.json'),JSON.stringify(summary,null,2));
-  console.log(`E2E OK: ${summary.productPages} localized product responses; ${summary.responsivePages} responsive pages at ${summary.widths.join(', ')}px; all product images decoded; languages, search, filters, pagination, gallery, SEO, login/session/logout, CSRF, authorization, XSS and admin CRUD/upload/reorder verified. Screenshots/report: ${dir}`);
+  console.log(`E2E OK: ${summary.productPages} localized product responses; ${summary.responsivePages} responsive pages at ${summary.widths.join(', ')}px; all product images decoded; languages, search, filters, pagination, gallery, SEO, login/session/logout, CSRF, authorization, XSS and admin CRUD/upload/reorder verified against a simulated GitHub HTTP boundary (no real GitHub writes). Static publication after rebuild verified. Screenshots/report: ${dir}`);
 } finally {
   await browser?.close();
   await new Promise(resolve=>server.close(resolve));
-  for(const file of uploaded)await unlink('public'+file).catch(()=>{});
+  // Fixture writes and uploaded images stay in .test-data, never in the real catalogue.
 }

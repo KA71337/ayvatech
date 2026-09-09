@@ -1,0 +1,37 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "functions": {
+    "api/admin.js": {
+      "maxDuration": 60,
+      "includeFiles": "{views/**,data/shop.json}"
+    }
+  },
+  "redirects": [
+    { "source": "/contact", "destination": "/contacts", "permanent": true },
+    { "source": "/:lang(ru|en)/contact", "destination": "/:lang/contacts", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/admin", "destination": "/api/admin?route=page" },
+    { "source": "/admin/:path*", "destination": "/api/admin?route=page/:path*" },
+    { "source": "/api/admin/:path*", "destination": "/api/admin?route=:path*" }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+      { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" }
+    ] },
+    { "source": "/admin/:path*", "headers": [
+      { "key": "Cache-Control", "value": "private, no-store" },
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+    ] },
+    { "source": "/media/:path*", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+    ] }
+  ]
+}

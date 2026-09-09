@@ -1,3 +1,9 @@
+// Public language preference needs no server or authentication cookie.
+try {
+  document.querySelectorAll('.languages a[lang]').forEach(link => link.addEventListener('click', () => localStorage.setItem('ayva.lang', link.lang)));
+  const preferred = localStorage.getItem('ayva.lang');
+  if (location.pathname === '/' && ['ru','en'].includes(preferred)) location.replace('/' + preferred + '/');
+} catch { /* Storage can be disabled; AZ remains the default. */ }
 const menu = document.querySelector('.menu-toggle');
 menu?.addEventListener('click', () => {
   const open = menu.getAttribute('aria-expanded') !== 'true';

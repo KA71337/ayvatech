@@ -8,7 +8,7 @@ playwright-report/
 *.log
 desktop.ini
 data/sessions/
-public/media/admin/
-public/media/admin-*
+dist/
+.vercel/
 data/*.lock
 data/*.tmp

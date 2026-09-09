@@ -2,5 +2,5 @@
 <main id="main" class="container"><section class="login-panel"><p class="eyebrow">AYVATECH / <%= t('admin') %></p><h1><%= t('login') %></h1>
 <% if(!configured){ %><p class="form-message" role="status"><%= t('setup') %></p><% } %>
 <% if(error){ %><p class="form-message" role="alert"><%= error %></p><% } %>
-<form method="post" action="/admin/login"><input type="hidden" name="_csrf" value="<%= csrf %>"><label for="password"><%= t('password') %></label><input type="password" id="password" name="password" autocomplete="current-password" maxlength="1024" required <%= configured?'':'disabled' %>><button class="button button-dark" type="submit" <%= configured?'':'disabled' %>><%= t('login') %> →</button></form>
+<form method="post" action="/api/admin/login"><input type="hidden" name="_csrf" value="<%= csrf %>"><label for="password"><%= t('password') %></label><input type="password" id="password" name="password" autocomplete="current-password" maxlength="1024" required <%= configured?'':'disabled' %>><button class="button button-dark" type="submit" <%= configured?'':'disabled' %>><%= t('login') %> →</button></form>
 </section></main><%- include('partials/footer') %>
