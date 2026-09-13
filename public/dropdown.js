@@ -6,6 +6,7 @@
     if (!root) return;
     root.classList.remove('is-open', 'opens-up');
     root.querySelector('.custom-dropdown__trigger').setAttribute('aria-expanded', 'false');
+    root.querySelector('.custom-dropdown__menu').hidden = true;
     if (openRoot === root) openRoot = null;
     if (focus) root.querySelector('.custom-dropdown__trigger').focus();
   };
@@ -26,6 +27,7 @@
   };
   const open = (root, focusIndex) => {
     if (openRoot && openRoot !== root) close(openRoot);
+    root.querySelector('.custom-dropdown__menu').hidden = false;
     position(root);
     root.classList.add('is-open');
     root.querySelector('.custom-dropdown__trigger').setAttribute('aria-expanded', 'true');
