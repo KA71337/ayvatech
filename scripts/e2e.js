@@ -38,7 +38,7 @@ const products=JSON.parse(await readFile('data/products.json','utf8'));
 const multi=products.find(p=>p.images.length>1);
 const savedMessage=t('saved','az')+' Saved to GitHub. Public pages update after the Vercel deployment completes.';
 let browser;
-const summary={productPages:0,responsivePages:0,widths:[320,375,390,430,768,1024,1440],browserErrors:[]};
+const summary={productPages:0,responsivePages:0,widths:[320,375,390,430,768,1024,1280,1440],browserErrors:[]};
 try {
   browser=await chromium.launch();
   const context=await browser.newContext({baseURL:base});
