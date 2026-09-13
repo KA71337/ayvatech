@@ -15,6 +15,7 @@ function update() {
   const query = Object.fromEntries(new URLSearchParams(location.search));
   const result = filterProducts(products, query, lang);
   for (const input of form.elements) if (input.name) input.value = query[input.name] || (input.name === 'sort' ? 'newest' : '');
+  window.syncCustomSelects?.();
   grid.replaceChildren(...result.items.map(p => cards.get(p.id).content.cloneNode(true)));
   document.querySelector('.empty-state')?.remove();
   if (!result.total) grid.before(document.querySelector('#catalog-empty').content.cloneNode(true));
