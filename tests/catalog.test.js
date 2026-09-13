@@ -14,7 +14,10 @@ test('every imported title, price, description, category, spec and photo matches
     assert.equal(p.title.az, raw.title); assert.equal(p.description.az, raw.description);
     assert.equal(p.price, raw.price); assert.equal(p.currency, raw.currency);
     assert.equal(p.category.az, raw.category); assert.deepEqual(p.properties, raw.properties);
-    assert.equal(p.sourceUrl, raw.sourceUrl); assert.deepEqual(p.images.map(i => i.sourceUrl), raw.images);
+    assert.equal(p.sourceUrl, raw.sourceUrl);
+    if (p.images.some(image => image.original.includes('/media/customer-'))) {
+      assert.ok(p.images.every(image => !image.sourceUrl && image.original.startsWith('/media/customer-')));
+    } else assert.deepEqual(p.images.map(i => i.sourceUrl), raw.images);
   }
 });
 test('first import adds, repeated import skips, updates preserve human translations', () => {

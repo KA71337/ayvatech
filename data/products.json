@@ -44,23 +44,22 @@
     ],
     "images": [
       {
-        "src": "/media/48295401-461c9c8d115c733d-1280.webp",
-        "original": "/media/48295401-461c9c8d115c733d-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F14%2F59%2F20%2F91c49c7d-35c4-4f88-a2e0-39b43163389e%2F37339_gcMEy5phqfU2XawgfEhyPA.jpg",
-        "width": 1280,
-        "height": 1707,
+        "src": "/media/customer-48295401-1-1086.webp",
+        "original": "/media/customer-48295401-1-original.jpg",
+        "width": 1086,
+        "height": 1448,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48295401-461c9c8d115c733d-320.webp"
+            "src": "/media/customer-48295401-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48295401-461c9c8d115c733d-640.webp"
+            "src": "/media/customer-48295401-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48295401-461c9c8d115c733d-1280.webp"
+            "width": 1086,
+            "src": "/media/customer-48295401-1-1086.webp"
           }
         ]
       }
@@ -113,23 +112,22 @@
     ],
     "images": [
       {
-        "src": "/media/48615710-00651bb45f252a75-1280.webp",
-        "original": "/media/48615710-00651bb45f252a75-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F09%2F06%2F11%2F58%2F45%2F48fdc2a9-052b-4c43-80c6-bae5af0154fe%2F63759_56IZQxXZ2rZmpXam7j7x9w.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48615710-1-1254.webp",
+        "original": "/media/customer-48615710-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48615710-00651bb45f252a75-320.webp"
+            "src": "/media/customer-48615710-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48615710-00651bb45f252a75-640.webp"
+            "src": "/media/customer-48615710-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48615710-00651bb45f252a75-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48615710-1-1254.webp"
           }
         ]
       }
@@ -341,44 +339,22 @@
     ],
     "images": [
       {
-        "src": "/media/48443456-e92e15bdcd46aa1c-1280.webp",
-        "original": "/media/48443456-e92e15bdcd46aa1c-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F16%2F21%2F54%2F59%2F75e9ebbc-2a23-4123-98d9-00dd39e7918d%2F36834_vsghQaZcaB1adSAxjaYgZA.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48443456-1-1254.webp",
+        "original": "/media/customer-48443456-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48443456-e92e15bdcd46aa1c-320.webp"
+            "src": "/media/customer-48443456-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48443456-e92e15bdcd46aa1c-640.webp"
+            "src": "/media/customer-48443456-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48443456-e92e15bdcd46aa1c-1280.webp"
-          }
-        ]
-      },
-      {
-        "src": "/media/48443456-a019990c717dc0a2-1280.webp",
-        "original": "/media/48443456-a019990c717dc0a2-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F16%2F21%2F54%2F59%2F319e4d81-7341-4bc0-82fa-97ce10734f1e%2F37048_D1yCm2jzKAvB7oBgCyZXeg.jpg",
-        "width": 1280,
-        "height": 1707,
-        "variants": [
-          {
-            "width": 320,
-            "src": "/media/48443456-a019990c717dc0a2-320.webp"
-          },
-          {
-            "width": 640,
-            "src": "/media/48443456-a019990c717dc0a2-640.webp"
-          },
-          {
-            "width": 1280,
-            "src": "/media/48443456-a019990c717dc0a2-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48443456-1-1254.webp"
           }
         ]
       }
@@ -435,23 +411,42 @@
     ],
     "images": [
       {
-        "src": "/media/48378278-d0a36ea75dc628fc-1280.webp",
-        "original": "/media/48378278-d0a36ea75dc628fc-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F09%2F09%2F33%2F5aafd825-ac1b-44fd-bcc4-6dc949509000%2F7532_WKCo4N-_J-1btB6ra3GLLQ.jpg",
+        "src": "/media/customer-48378278-1-1280.webp",
+        "original": "/media/customer-48378278-1-original.jpg",
         "width": 1280,
-        "height": 1280,
+        "height": 1024,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378278-d0a36ea75dc628fc-320.webp"
+            "src": "/media/customer-48378278-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378278-d0a36ea75dc628fc-640.webp"
+            "src": "/media/customer-48378278-1-640.webp"
           },
           {
             "width": 1280,
-            "src": "/media/48378278-d0a36ea75dc628fc-1280.webp"
+            "src": "/media/customer-48378278-1-1280.webp"
+          }
+        ]
+      },
+      {
+        "src": "/media/customer-48378278-2-1254.webp",
+        "original": "/media/customer-48378278-2-original.jpg",
+        "width": 1254,
+        "height": 1254,
+        "variants": [
+          {
+            "width": 320,
+            "src": "/media/customer-48378278-2-320.webp"
+          },
+          {
+            "width": 640,
+            "src": "/media/customer-48378278-2-640.webp"
+          },
+          {
+            "width": 1254,
+            "src": "/media/customer-48378278-2-1254.webp"
           }
         ]
       }
@@ -504,86 +499,22 @@
     ],
     "images": [
       {
-        "src": "/media/48622112-2974bc362e08a5ed-1280.webp",
-        "original": "/media/48622112-2974bc362e08a5ed-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F09%2F06%2F23%2F31%2F44%2F7a016955-e833-4208-a53a-13a38111c932%2F72301_OeTJq_PftqOZvzhLV_4B6Q.jpg",
-        "width": 1280,
-        "height": 1536,
+        "src": "/media/customer-48622112-1-944.webp",
+        "original": "/media/customer-48622112-1-original.jpg",
+        "width": 944,
+        "height": 1133,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48622112-2974bc362e08a5ed-320.webp"
+            "src": "/media/customer-48622112-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48622112-2974bc362e08a5ed-640.webp"
+            "src": "/media/customer-48622112-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48622112-2974bc362e08a5ed-1280.webp"
-          }
-        ]
-      },
-      {
-        "src": "/media/48622112-d0f964ad47675b8d-1280.webp",
-        "original": "/media/48622112-d0f964ad47675b8d-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F09%2F06%2F23%2F31%2F44%2F84359370-322f-4f18-b340-275512d59c56%2F72313_GthDriDlEPmzMaSelpwh4A.jpg",
-        "width": 1280,
-        "height": 1280,
-        "variants": [
-          {
-            "width": 320,
-            "src": "/media/48622112-d0f964ad47675b8d-320.webp"
-          },
-          {
-            "width": 640,
-            "src": "/media/48622112-d0f964ad47675b8d-640.webp"
-          },
-          {
-            "width": 1280,
-            "src": "/media/48622112-d0f964ad47675b8d-1280.webp"
-          }
-        ]
-      },
-      {
-        "src": "/media/48622112-08f1805ec37bfa91-1280.webp",
-        "original": "/media/48622112-08f1805ec37bfa91-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F09%2F06%2F23%2F31%2F44%2F713851a2-d79b-41f9-a6c9-b27b9e562e9d%2F39459_z57QSEn0u4eKfQpD7GZ5pg.jpg",
-        "width": 1280,
-        "height": 1280,
-        "variants": [
-          {
-            "width": 320,
-            "src": "/media/48622112-08f1805ec37bfa91-320.webp"
-          },
-          {
-            "width": 640,
-            "src": "/media/48622112-08f1805ec37bfa91-640.webp"
-          },
-          {
-            "width": 1280,
-            "src": "/media/48622112-08f1805ec37bfa91-1280.webp"
-          }
-        ]
-      },
-      {
-        "src": "/media/48622112-ada4b3449e6a464e-1280.webp",
-        "original": "/media/48622112-ada4b3449e6a464e-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F09%2F06%2F23%2F31%2F44%2F81dfaa15-56e4-4265-ba5d-b471a05d6b7c%2F72351_V_NzXr3516s3O1UYJ-KvtQ.jpg",
-        "width": 1280,
-        "height": 1280,
-        "variants": [
-          {
-            "width": 320,
-            "src": "/media/48622112-ada4b3449e6a464e-320.webp"
-          },
-          {
-            "width": 640,
-            "src": "/media/48622112-ada4b3449e6a464e-640.webp"
-          },
-          {
-            "width": 1280,
-            "src": "/media/48622112-ada4b3449e6a464e-1280.webp"
+            "width": 944,
+            "src": "/media/customer-48622112-1-944.webp"
           }
         ]
       }
@@ -914,44 +845,22 @@
     ],
     "images": [
       {
-        "src": "/media/48252125-71ea4cbdba4784dd-1280.webp",
-        "original": "/media/48252125-71ea4cbdba4784dd-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F14%2F02%2F48%2F2b0810b0-7628-48c2-882d-2f6a31d3768c%2F53201_Pw7nxiob6f-NaSPj5QFj_Q.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48252125-1-1254.webp",
+        "original": "/media/customer-48252125-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48252125-71ea4cbdba4784dd-320.webp"
+            "src": "/media/customer-48252125-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48252125-71ea4cbdba4784dd-640.webp"
+            "src": "/media/customer-48252125-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48252125-71ea4cbdba4784dd-1280.webp"
-          }
-        ]
-      },
-      {
-        "src": "/media/48252125-f84724e5b4c93cef-1280.webp",
-        "original": "/media/48252125-f84724e5b4c93cef-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F14%2F03%2F07%2F60db81c5-4345-4814-b853-6268391a2891%2F86455_91-wK2bg7CtX0d9r38iB9w.jpg",
-        "width": 1280,
-        "height": 1280,
-        "variants": [
-          {
-            "width": 320,
-            "src": "/media/48252125-f84724e5b4c93cef-320.webp"
-          },
-          {
-            "width": 640,
-            "src": "/media/48252125-f84724e5b4c93cef-640.webp"
-          },
-          {
-            "width": 1280,
-            "src": "/media/48252125-f84724e5b4c93cef-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48252125-1-1254.webp"
           }
         ]
       }
@@ -1094,23 +1003,22 @@
     ],
     "images": [
       {
-        "src": "/media/48295194-7a1468feb19e950b-1280.webp",
-        "original": "/media/48295194-7a1468feb19e950b-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F14%2F42%2F17%2Fe2278d41-3e7c-4af4-9d88-3bc24fe527ca%2F24168_tYt_gqVGwPyZgU5WmyikoA.jpg",
-        "width": 1280,
-        "height": 1920,
+        "src": "/media/customer-48295194-1-1024.webp",
+        "original": "/media/customer-48295194-1-original.jpg",
+        "width": 1024,
+        "height": 1536,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48295194-7a1468feb19e950b-320.webp"
+            "src": "/media/customer-48295194-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48295194-7a1468feb19e950b-640.webp"
+            "src": "/media/customer-48295194-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48295194-7a1468feb19e950b-1280.webp"
+            "width": 1024,
+            "src": "/media/customer-48295194-1-1024.webp"
           }
         ]
       }
@@ -1163,23 +1071,22 @@
     ],
     "images": [
       {
-        "src": "/media/48295170-57d45f743052bde1-1280.webp",
-        "original": "/media/48295170-57d45f743052bde1-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F14%2F39%2F42%2Fedbc9e7d-c25f-45dc-9c5d-e9a1164b446a%2F64540_Rw9VvRzbCSjDi8pgXS5bRg.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48295170-1-1254.webp",
+        "original": "/media/customer-48295170-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48295170-57d45f743052bde1-320.webp"
+            "src": "/media/customer-48295170-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48295170-57d45f743052bde1-640.webp"
+            "src": "/media/customer-48295170-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48295170-57d45f743052bde1-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48295170-1-1254.webp"
           }
         ]
       }
@@ -1228,23 +1135,22 @@
     ],
     "images": [
       {
-        "src": "/media/48295035-31c57fa141fb9b2a-1280.webp",
-        "original": "/media/48295035-31c57fa141fb9b2a-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F14%2F27%2F09%2F074da535-184c-4947-adfd-033bef158847%2F64561_0wTDkD3D4FfyYv98_nUBRg.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48295035-1-1254.webp",
+        "original": "/media/customer-48295035-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48295035-31c57fa141fb9b2a-320.webp"
+            "src": "/media/customer-48295035-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48295035-31c57fa141fb9b2a-640.webp"
+            "src": "/media/customer-48295035-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48295035-31c57fa141fb9b2a-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48295035-1-1254.webp"
           }
         ]
       }
@@ -1297,23 +1203,22 @@
     ],
     "images": [
       {
-        "src": "/media/48295265-bf0c34ce55545eae-1280.webp",
-        "original": "/media/48295265-bf0c34ce55545eae-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F14%2F49%2F11%2Fffb779a8-6c02-4b93-9d9b-f572d53ae593%2F64509_2XZ6s2Oo3-2AKtm5q57GTQ.jpg",
-        "width": 1280,
-        "height": 1707,
+        "src": "/media/customer-48295265-1-1086.webp",
+        "original": "/media/customer-48295265-1-original.jpg",
+        "width": 1086,
+        "height": 1448,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48295265-bf0c34ce55545eae-320.webp"
+            "src": "/media/customer-48295265-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48295265-bf0c34ce55545eae-640.webp"
+            "src": "/media/customer-48295265-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48295265-bf0c34ce55545eae-1280.webp"
+            "width": 1086,
+            "src": "/media/customer-48295265-1-1086.webp"
           }
         ]
       }
@@ -1370,23 +1275,22 @@
     ],
     "images": [
       {
-        "src": "/media/48295438-15084eec39b87189-1280.webp",
-        "original": "/media/48295438-15084eec39b87189-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F15%2F06%2F05%2F2486abd2-dbae-4cc7-8b0c-c7a03f1e899b%2F64488_SiMfWD9UMPbJWDGvb98B9A.jpg",
-        "width": 1280,
-        "height": 1920,
+        "src": "/media/customer-48295438-1-1024.webp",
+        "original": "/media/customer-48295438-1-original.jpg",
+        "width": 1024,
+        "height": 1536,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48295438-15084eec39b87189-320.webp"
+            "src": "/media/customer-48295438-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48295438-15084eec39b87189-640.webp"
+            "src": "/media/customer-48295438-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48295438-15084eec39b87189-1280.webp"
+            "width": 1024,
+            "src": "/media/customer-48295438-1-1024.webp"
           }
         ]
       }
@@ -1439,23 +1343,22 @@
     ],
     "images": [
       {
-        "src": "/media/48294980-c10a4137cfb50c0a-1280.webp",
-        "original": "/media/48294980-c10a4137cfb50c0a-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F14%2F22%2F01%2F6ff72933-9180-4cd7-940c-e9c9a7f25608%2F37327_vkTaECt_hA6yRx4DPPS7qQ.jpg",
-        "width": 1280,
-        "height": 1525,
+        "src": "/media/customer-48294980-1-1149.webp",
+        "original": "/media/customer-48294980-1-original.jpg",
+        "width": 1149,
+        "height": 1369,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48294980-c10a4137cfb50c0a-320.webp"
+            "src": "/media/customer-48294980-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48294980-c10a4137cfb50c0a-640.webp"
+            "src": "/media/customer-48294980-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48294980-c10a4137cfb50c0a-1280.webp"
+            "width": 1149,
+            "src": "/media/customer-48294980-1-1149.webp"
           }
         ]
       }
@@ -1585,23 +1488,22 @@
     ],
     "images": [
       {
-        "src": "/media/48293363-37e090ec8cc27195-1280.webp",
-        "original": "/media/48293363-37e090ec8cc27195-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F11%2F50%2F10%2F5e5b0cd4-2dcb-4299-86ba-a626018333aa%2F43977_0lpzKS1eeJvJ893UawR7bg.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48293363-1-1254.webp",
+        "original": "/media/customer-48293363-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48293363-37e090ec8cc27195-320.webp"
+            "src": "/media/customer-48293363-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48293363-37e090ec8cc27195-640.webp"
+            "src": "/media/customer-48293363-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48293363-37e090ec8cc27195-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48293363-1-1254.webp"
           }
         ]
       }
@@ -1658,23 +1560,22 @@
     ],
     "images": [
       {
-        "src": "/media/48293405-4a51af69f387cca8-1280.webp",
-        "original": "/media/48293405-4a51af69f387cca8-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F30%2F11%2F54%2F03%2Ffe09d346-0287-4ba9-b12a-d88b51029cb9%2F57878_Hq6ER0bqAYjLpJOs0Lzlqg.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48293405-1-1254.webp",
+        "original": "/media/customer-48293405-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48293405-4a51af69f387cca8-320.webp"
+            "src": "/media/customer-48293405-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48293405-4a51af69f387cca8-640.webp"
+            "src": "/media/customer-48293405-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48293405-4a51af69f387cca8-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48293405-1-1254.webp"
           }
         ]
       }
@@ -1817,23 +1718,22 @@
     ],
     "images": [
       {
-        "src": "/media/48266940-786b841255cf72a4-1280.webp",
-        "original": "/media/48266940-786b841255cf72a4-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F27%2F12%2F34%2F01%2Faca1451c-5c14-47f6-9fe2-069421a46a28%2F53188_D6xo3a3iiQjtU9hbkIxR1g.jpg",
-        "width": 1280,
-        "height": 1600,
+        "src": "/media/customer-48266940-1-1122.webp",
+        "original": "/media/customer-48266940-1-original.jpg",
+        "width": 1122,
+        "height": 1402,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48266940-786b841255cf72a4-320.webp"
+            "src": "/media/customer-48266940-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48266940-786b841255cf72a4-640.webp"
+            "src": "/media/customer-48266940-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48266940-786b841255cf72a4-1280.webp"
+            "width": 1122,
+            "src": "/media/customer-48266940-1-1122.webp"
           }
         ]
       }
@@ -1886,23 +1786,22 @@
     ],
     "images": [
       {
-        "src": "/media/48266868-6a0144425d64cebf-1280.webp",
-        "original": "/media/48266868-6a0144425d64cebf-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F27%2F12%2F27%2F07%2F8eb0a203-ff0f-4347-b314-313df700c6e0%2F36333_Iw1Mxo0ZotnxB2Nv4t4REw.jpg",
-        "width": 1280,
-        "height": 1600,
+        "src": "/media/customer-48266868-1-1122.webp",
+        "original": "/media/customer-48266868-1-original.jpg",
+        "width": 1122,
+        "height": 1402,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48266868-6a0144425d64cebf-320.webp"
+            "src": "/media/customer-48266868-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48266868-6a0144425d64cebf-640.webp"
+            "src": "/media/customer-48266868-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48266868-6a0144425d64cebf-1280.webp"
+            "width": 1122,
+            "src": "/media/customer-48266868-1-1122.webp"
           }
         ]
       }
@@ -1959,23 +1858,42 @@
     ],
     "images": [
       {
-        "src": "/media/48266758-0f20b3204c9001c7-1280.webp",
-        "original": "/media/48266758-0f20b3204c9001c7-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F27%2F12%2F17%2F37%2F8aa97841-c3d6-4267-85f9-758cf8bfe038%2F7469_R23Zfqh4_bGnpxpce1nQJA.jpg",
-        "width": 1280,
-        "height": 1600,
+        "src": "/media/customer-48266758-1-1122.webp",
+        "original": "/media/customer-48266758-1-original.jpg",
+        "width": 1122,
+        "height": 1402,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48266758-0f20b3204c9001c7-320.webp"
+            "src": "/media/customer-48266758-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48266758-0f20b3204c9001c7-640.webp"
+            "src": "/media/customer-48266758-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48266758-0f20b3204c9001c7-1280.webp"
+            "width": 1122,
+            "src": "/media/customer-48266758-1-1122.webp"
+          }
+        ]
+      },
+      {
+        "src": "/media/customer-48266758-2-1122.webp",
+        "original": "/media/customer-48266758-2-original.jpg",
+        "width": 1122,
+        "height": 1402,
+        "variants": [
+          {
+            "width": 320,
+            "src": "/media/customer-48266758-2-320.webp"
+          },
+          {
+            "width": 640,
+            "src": "/media/customer-48266758-2-640.webp"
+          },
+          {
+            "width": 1122,
+            "src": "/media/customer-48266758-2-1122.webp"
           }
         ]
       }
@@ -2089,23 +2007,22 @@
     ],
     "images": [
       {
-        "src": "/media/48254435-042c6198599ece6f-1280.webp",
-        "original": "/media/48254435-042c6198599ece6f-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F18%2F13%2F12%2F806cfb54-7263-4799-a900-ef6e175b2af3%2F30726_tdD_MONjFTqhR-AYJ10y6A.jpg",
-        "width": 1280,
-        "height": 1600,
+        "src": "/media/customer-48254435-1-1122.webp",
+        "original": "/media/customer-48254435-1-original.jpg",
+        "width": 1122,
+        "height": 1402,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48254435-042c6198599ece6f-320.webp"
+            "src": "/media/customer-48254435-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48254435-042c6198599ece6f-640.webp"
+            "src": "/media/customer-48254435-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48254435-042c6198599ece6f-1280.webp"
+            "width": 1122,
+            "src": "/media/customer-48254435-1-1122.webp"
           }
         ]
       }
@@ -2154,44 +2071,22 @@
     ],
     "images": [
       {
-        "src": "/media/48253302-298a325f6034a461-1280.webp",
-        "original": "/media/48253302-298a325f6034a461-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F16%2F02%2F25%2F064c9646-b981-4dc0-b7c6-46130cc1e688%2F40068_pwi9u1RPjg6PrKzVAXBfKw.jpg",
-        "width": 1280,
-        "height": 1600,
+        "src": "/media/customer-48253302-1-1122.webp",
+        "original": "/media/customer-48253302-1-original.jpg",
+        "width": 1122,
+        "height": 1402,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48253302-298a325f6034a461-320.webp"
+            "src": "/media/customer-48253302-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48253302-298a325f6034a461-640.webp"
+            "src": "/media/customer-48253302-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48253302-298a325f6034a461-1280.webp"
-          }
-        ]
-      },
-      {
-        "src": "/media/48253302-0456a18a4dbebeb8-1280.webp",
-        "original": "/media/48253302-0456a18a4dbebeb8-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F16%2F02%2F25%2F91e8b5e2-76e0-4073-bffe-ca3c3580db2a%2F75566_4meRvTeJemNU0HN0Ci80Jg.jpg",
-        "width": 1280,
-        "height": 1280,
-        "variants": [
-          {
-            "width": 320,
-            "src": "/media/48253302-0456a18a4dbebeb8-320.webp"
-          },
-          {
-            "width": 640,
-            "src": "/media/48253302-0456a18a4dbebeb8-640.webp"
-          },
-          {
-            "width": 1280,
-            "src": "/media/48253302-0456a18a4dbebeb8-1280.webp"
+            "width": 1122,
+            "src": "/media/customer-48253302-1-1122.webp"
           }
         ]
       }
@@ -2240,23 +2135,22 @@
     ],
     "images": [
       {
-        "src": "/media/48253349-a2c3941001d219ab-1280.webp",
-        "original": "/media/48253349-a2c3941001d219ab-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F16%2F06%2F00%2F3ee84bc7-9126-465c-b80d-021f8ab7017b%2F30938_l81g6q-ICJBNQ8AwVgObSw.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48253349-1-1254.webp",
+        "original": "/media/customer-48253349-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48253349-a2c3941001d219ab-320.webp"
+            "src": "/media/customer-48253349-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48253349-a2c3941001d219ab-640.webp"
+            "src": "/media/customer-48253349-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48253349-a2c3941001d219ab-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48253349-1-1254.webp"
           }
         ]
       }
@@ -2309,23 +2203,22 @@
     ],
     "images": [
       {
-        "src": "/media/48253416-2c6074567965de48-1280.webp",
-        "original": "/media/48253416-2c6074567965de48-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F16%2F14%2F04%2F651e59f8-d0f0-45f0-9714-ad2b17312a0a%2F78349_ao3iXNhVik0LGwN3nbRDwQ.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48253416-1-1254.webp",
+        "original": "/media/customer-48253416-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48253416-2c6074567965de48-320.webp"
+            "src": "/media/customer-48253416-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48253416-2c6074567965de48-640.webp"
+            "src": "/media/customer-48253416-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48253416-2c6074567965de48-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48253416-1-1254.webp"
           }
         ]
       }
@@ -2378,44 +2271,42 @@
     ],
     "images": [
       {
-        "src": "/media/48252270-d2d5bc7a023ac4b1-1280.webp",
-        "original": "/media/48252270-d2d5bc7a023ac4b1-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F14%2F16%2F10%2F618ba792-68c8-4db1-a923-8702c2219211%2F17056_F263L_uBPM-5pv5gPqxywA.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48252270-1-1254.webp",
+        "original": "/media/customer-48252270-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48252270-d2d5bc7a023ac4b1-320.webp"
+            "src": "/media/customer-48252270-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48252270-d2d5bc7a023ac4b1-640.webp"
+            "src": "/media/customer-48252270-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48252270-d2d5bc7a023ac4b1-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48252270-1-1254.webp"
           }
         ]
       },
       {
-        "src": "/media/48252270-6ade8661a660e4ff-1280.webp",
-        "original": "/media/48252270-6ade8661a660e4ff-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F14%2F16%2F10%2F825a6bf7-5f47-425a-b2d3-aff2c8212d31%2F75586_h8_rWgWnDdjBwEijV5bi8Q.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48252270-2-1254.webp",
+        "original": "/media/customer-48252270-2-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48252270-6ade8661a660e4ff-320.webp"
+            "src": "/media/customer-48252270-2-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48252270-6ade8661a660e4ff-640.webp"
+            "src": "/media/customer-48252270-2-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48252270-6ade8661a660e4ff-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48252270-2-1254.webp"
           }
         ]
       }
@@ -2480,23 +2371,22 @@
     ],
     "images": [
       {
-        "src": "/media/48252204-1b2563c066356d83-1280.webp",
-        "original": "/media/48252204-1b2563c066356d83-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F14%2F10%2F03%2F3e9c93d8-8854-4b68-b11f-6e5d0c8d3c34%2F5081_DcOUmUG53FVSTkITRTpUew.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48252204-1-1254.webp",
+        "original": "/media/customer-48252204-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48252204-1b2563c066356d83-320.webp"
+            "src": "/media/customer-48252204-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48252204-1b2563c066356d83-640.webp"
+            "src": "/media/customer-48252204-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48252204-1b2563c066356d83-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48252204-1-1254.webp"
           }
         ]
       }
@@ -2545,44 +2435,62 @@
     ],
     "images": [
       {
-        "src": "/media/48252158-0737b4d1e3e6473d-1280.webp",
-        "original": "/media/48252158-0737b4d1e3e6473d-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F14%2F05%2F47%2Ff9297aab-b712-4c28-8460-78104acaf604%2F22804_ZgnY1bmWGcvQDwqdTEd4og.jpg",
+        "src": "/media/customer-48252158-1-1254.webp",
+        "original": "/media/customer-48252158-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
+        "variants": [
+          {
+            "width": 320,
+            "src": "/media/customer-48252158-1-320.webp"
+          },
+          {
+            "width": 640,
+            "src": "/media/customer-48252158-1-640.webp"
+          },
+          {
+            "width": 1254,
+            "src": "/media/customer-48252158-1-1254.webp"
+          }
+        ]
+      },
+      {
+        "src": "/media/customer-48252158-2-1254.webp",
+        "original": "/media/customer-48252158-2-original.jpg",
+        "width": 1254,
+        "height": 1254,
+        "variants": [
+          {
+            "width": 320,
+            "src": "/media/customer-48252158-2-320.webp"
+          },
+          {
+            "width": 640,
+            "src": "/media/customer-48252158-2-640.webp"
+          },
+          {
+            "width": 1254,
+            "src": "/media/customer-48252158-2-1254.webp"
+          }
+        ]
+      },
+      {
+        "src": "/media/customer-48252158-3-1280.webp",
+        "original": "/media/customer-48252158-3-original.jpg",
         "width": 1280,
         "height": 1024,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48252158-0737b4d1e3e6473d-320.webp"
+            "src": "/media/customer-48252158-3-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48252158-0737b4d1e3e6473d-640.webp"
+            "src": "/media/customer-48252158-3-640.webp"
           },
           {
             "width": 1280,
-            "src": "/media/48252158-0737b4d1e3e6473d-1280.webp"
-          }
-        ]
-      },
-      {
-        "src": "/media/48252158-e12cf5d4a0b6f04a-1280.webp",
-        "original": "/media/48252158-e12cf5d4a0b6f04a-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F07%2F25%2F14%2F05%2F47%2F6b7da7d7-73cf-400d-815e-ce70e8025f58%2F55361_zdhWFMWX5dzVcw6TteEqgg.jpg",
-        "width": 1280,
-        "height": 1280,
-        "variants": [
-          {
-            "width": 320,
-            "src": "/media/48252158-e12cf5d4a0b6f04a-320.webp"
-          },
-          {
-            "width": 640,
-            "src": "/media/48252158-e12cf5d4a0b6f04a-640.webp"
-          },
-          {
-            "width": 1280,
-            "src": "/media/48252158-e12cf5d4a0b6f04a-1280.webp"
+            "src": "/media/customer-48252158-3-1280.webp"
           }
         ]
       }
@@ -2639,23 +2547,42 @@
     ],
     "images": [
       {
-        "src": "/media/48378206-9ac5b0b8838c9069-1280.webp",
-        "original": "/media/48378206-9ac5b0b8838c9069-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F08%2F34%2F44%2F9fd0a32e-1f5e-4bec-9de9-6fa61abac53f%2F83417_WOoDUg5aoVzY55n_hHlSaQ.jpg",
-        "width": 1280,
-        "height": 1600,
+        "src": "/media/customer-48378206-1-1122.webp",
+        "original": "/media/customer-48378206-1-original.jpg",
+        "width": 1122,
+        "height": 1402,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378206-9ac5b0b8838c9069-320.webp"
+            "src": "/media/customer-48378206-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378206-9ac5b0b8838c9069-640.webp"
+            "src": "/media/customer-48378206-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378206-9ac5b0b8838c9069-1280.webp"
+            "width": 1122,
+            "src": "/media/customer-48378206-1-1122.webp"
+          }
+        ]
+      },
+      {
+        "src": "/media/customer-48378206-2-1122.webp",
+        "original": "/media/customer-48378206-2-original.jpg",
+        "width": 1122,
+        "height": 1402,
+        "variants": [
+          {
+            "width": 320,
+            "src": "/media/customer-48378206-2-320.webp"
+          },
+          {
+            "width": 640,
+            "src": "/media/customer-48378206-2-640.webp"
+          },
+          {
+            "width": 1122,
+            "src": "/media/customer-48378206-2-1122.webp"
           }
         ]
       }
@@ -2712,23 +2639,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378200-e4e0b7202bfb06c2-1280.webp",
-        "original": "/media/48378200-e4e0b7202bfb06c2-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F08%2F30%2F10%2F6ceed1aa-14d8-49d7-bf69-b0e3b57d1c12%2F14259_96GmKEbRyyLtPo1mn8xchg.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48378200-1-1254.webp",
+        "original": "/media/customer-48378200-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378200-e4e0b7202bfb06c2-320.webp"
+            "src": "/media/customer-48378200-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378200-e4e0b7202bfb06c2-640.webp"
+            "src": "/media/customer-48378200-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378200-e4e0b7202bfb06c2-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48378200-1-1254.webp"
           }
         ]
       }
@@ -2785,23 +2711,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378197-e99558b4c8af1f24-1280.webp",
-        "original": "/media/48378197-e99558b4c8af1f24-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F08%2F28%2F56%2F6af8cd67-5aeb-4873-a4f2-7d8ba368f428%2F47763_AhiGSfwWhZoHptzjA1JADQ.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48378197-1-1254.webp",
+        "original": "/media/customer-48378197-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378197-e99558b4c8af1f24-320.webp"
+            "src": "/media/customer-48378197-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378197-e99558b4c8af1f24-640.webp"
+            "src": "/media/customer-48378197-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378197-e99558b4c8af1f24-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48378197-1-1254.webp"
           }
         ]
       }
@@ -2858,23 +2783,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378227-3a937b481c7a454e-1280.webp",
-        "original": "/media/48378227-3a937b481c7a454e-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F08%2F46%2F26%2F1b8d36e3-b310-4c68-90a4-114c87845557%2F88531_l_S6NxjHjIqa1qrrGhbuPA.jpg",
-        "width": 1280,
-        "height": 1600,
+        "src": "/media/customer-48378227-1-1122.webp",
+        "original": "/media/customer-48378227-1-original.jpg",
+        "width": 1122,
+        "height": 1402,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378227-3a937b481c7a454e-320.webp"
+            "src": "/media/customer-48378227-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378227-3a937b481c7a454e-640.webp"
+            "src": "/media/customer-48378227-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378227-3a937b481c7a454e-1280.webp"
+            "width": 1122,
+            "src": "/media/customer-48378227-1-1122.webp"
           }
         ]
       }
@@ -2931,23 +2855,42 @@
     ],
     "images": [
       {
-        "src": "/media/48378211-fedb3b956472bd36-1280.webp",
-        "original": "/media/48378211-fedb3b956472bd36-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F08%2F39%2F03%2Fadda72a2-1bc9-47c4-b5c5-425b5e024dd0%2F10241_w2VmO9blRYAy7e8TI2Cj_A.jpg",
-        "width": 1280,
-        "height": 1600,
+        "src": "/media/customer-48378211-1-1122.webp",
+        "original": "/media/customer-48378211-1-original.jpg",
+        "width": 1122,
+        "height": 1402,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378211-fedb3b956472bd36-320.webp"
+            "src": "/media/customer-48378211-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378211-fedb3b956472bd36-640.webp"
+            "src": "/media/customer-48378211-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378211-fedb3b956472bd36-1280.webp"
+            "width": 1122,
+            "src": "/media/customer-48378211-1-1122.webp"
+          }
+        ]
+      },
+      {
+        "src": "/media/customer-48378211-2-1122.webp",
+        "original": "/media/customer-48378211-2-original.jpg",
+        "width": 1122,
+        "height": 1402,
+        "variants": [
+          {
+            "width": 320,
+            "src": "/media/customer-48378211-2-320.webp"
+          },
+          {
+            "width": 640,
+            "src": "/media/customer-48378211-2-640.webp"
+          },
+          {
+            "width": 1122,
+            "src": "/media/customer-48378211-2-1122.webp"
           }
         ]
       }
@@ -3004,23 +2947,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378241-590651a3ee1696ca-1280.webp",
-        "original": "/media/48378241-590651a3ee1696ca-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F08%2F53%2F55%2F0e59adc1-2d59-4293-8b9b-ab60deef6a90%2F50010_K-i9Q7-bTRz9_-btjr7mXA.jpg",
-        "width": 1280,
-        "height": 1525,
+        "src": "/media/customer-48378241-1-1149.webp",
+        "original": "/media/customer-48378241-1-original.jpg",
+        "width": 1149,
+        "height": 1369,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378241-590651a3ee1696ca-320.webp"
+            "src": "/media/customer-48378241-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378241-590651a3ee1696ca-640.webp"
+            "src": "/media/customer-48378241-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378241-590651a3ee1696ca-1280.webp"
+            "width": 1149,
+            "src": "/media/customer-48378241-1-1149.webp"
           }
         ]
       }
@@ -3077,23 +3019,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378235-573a37565e20e951-1280.webp",
-        "original": "/media/48378235-573a37565e20e951-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F08%2F50%2F14%2Fee7808ef-0469-43de-b767-35d21072d741%2F83388_U4eiElbl3g90v808M6JWZA.jpg",
-        "width": 1280,
-        "height": 1481,
+        "src": "/media/customer-48378235-1-1166.webp",
+        "original": "/media/customer-48378235-1-original.jpg",
+        "width": 1166,
+        "height": 1349,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378235-573a37565e20e951-320.webp"
+            "src": "/media/customer-48378235-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378235-573a37565e20e951-640.webp"
+            "src": "/media/customer-48378235-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378235-573a37565e20e951-1280.webp"
+            "width": 1166,
+            "src": "/media/customer-48378235-1-1166.webp"
           }
         ]
       }
@@ -3150,23 +3091,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378255-8c75559f14a941d8-1280.webp",
-        "original": "/media/48378255-8c75559f14a941d8-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F09%2F00%2F12%2F09e74d4d-5a4c-4cbd-8331-dbc325806c33%2F97731_gIoBxxSDSmDEm9ljBZcTMA.jpg",
-        "width": 1280,
-        "height": 1521,
+        "src": "/media/customer-48378255-1-1151.webp",
+        "original": "/media/customer-48378255-1-original.jpg",
+        "width": 1151,
+        "height": 1367,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378255-8c75559f14a941d8-320.webp"
+            "src": "/media/customer-48378255-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378255-8c75559f14a941d8-640.webp"
+            "src": "/media/customer-48378255-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378255-8c75559f14a941d8-1280.webp"
+            "width": 1151,
+            "src": "/media/customer-48378255-1-1151.webp"
           }
         ]
       }
@@ -3223,23 +3163,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378298-605ae2484f342978-1280.webp",
-        "original": "/media/48378298-605ae2484f342978-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F09%2F16%2F13%2Fa97db877-2985-4a9a-8f78-46f2e73c99ee%2F88519_Wu7jVFKhDRHpzxZ-nI2O_g.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48378298-1-1254.webp",
+        "original": "/media/customer-48378298-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378298-605ae2484f342978-320.webp"
+            "src": "/media/customer-48378298-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378298-605ae2484f342978-640.webp"
+            "src": "/media/customer-48378298-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378298-605ae2484f342978-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48378298-1-1254.webp"
           }
         ]
       }
@@ -3296,23 +3235,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378286-b7bc916c7ca44b28-1280.webp",
-        "original": "/media/48378286-b7bc916c7ca44b28-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F09%2F13%2F12%2F819e522e-db16-4317-a123-c51e4c6755e2%2F9917__sgKDyY3rrNPltMBG_vtxQ.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48378286-1-1254.webp",
+        "original": "/media/customer-48378286-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378286-b7bc916c7ca44b28-320.webp"
+            "src": "/media/customer-48378286-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378286-b7bc916c7ca44b28-640.webp"
+            "src": "/media/customer-48378286-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378286-b7bc916c7ca44b28-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48378286-1-1254.webp"
           }
         ]
       }
@@ -3369,23 +3307,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378317-6a8cab9c878480f8-1280.webp",
-        "original": "/media/48378317-6a8cab9c878480f8-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F09%2F21%2F59%2Fbd70694d-10a6-4a76-a432-925d2b04a3e3%2F62718_y1a8BNHaG6vVJ_BLBx9hbg.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48378317-1-1254.webp",
+        "original": "/media/customer-48378317-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378317-6a8cab9c878480f8-320.webp"
+            "src": "/media/customer-48378317-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378317-6a8cab9c878480f8-640.webp"
+            "src": "/media/customer-48378317-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378317-6a8cab9c878480f8-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48378317-1-1254.webp"
           }
         ]
       }
@@ -3442,23 +3379,22 @@
     ],
     "images": [
       {
-        "src": "/media/48378307-71b28f69d15ae86d-1280.webp",
-        "original": "/media/48378307-71b28f69d15ae86d-original.jpg",
-        "sourceUrl": "https://tap.azstatic.com/uploads/full/2026%2F08%2F09%2F09%2F19%2F34%2Fc4240ec7-c1d1-4cf8-a2d9-056d644bf6dd%2F88534__fPjKL4KaDTePkrmgQD92Q.jpg",
-        "width": 1280,
-        "height": 1280,
+        "src": "/media/customer-48378307-1-1254.webp",
+        "original": "/media/customer-48378307-1-original.jpg",
+        "width": 1254,
+        "height": 1254,
         "variants": [
           {
             "width": 320,
-            "src": "/media/48378307-71b28f69d15ae86d-320.webp"
+            "src": "/media/customer-48378307-1-320.webp"
           },
           {
             "width": 640,
-            "src": "/media/48378307-71b28f69d15ae86d-640.webp"
+            "src": "/media/customer-48378307-1-640.webp"
           },
           {
-            "width": 1280,
-            "src": "/media/48378307-71b28f69d15ae86d-1280.webp"
+            "width": 1254,
+            "src": "/media/customer-48378307-1-1254.webp"
           }
         ]
       }
