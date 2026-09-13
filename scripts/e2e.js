@@ -107,7 +107,8 @@ try {
   await page.setViewportSize({width:1440,height:900});
   for(const p of products){await visit(`/product/${p.slug}`);await imagesWork();for(let i=0;i<p.images.length;i++){await page.locator('.gallery-thumbs button').nth(i).click();await imagesWork();}}
   for(const lang of ['ru','en','az']){
-    await page.locator(`.languages a[lang="${lang}"]`).click();await expect(page.locator('html')).toHaveAttribute('lang',lang);
+    await page.locator('.language-dropdown-trigger').click();
+    await page.locator(`.language-dropdown-option[lang="${lang}"]`).click();await expect(page.locator('html')).toHaveAttribute('lang',lang);
     await page.goto('/');await expect(page.locator('html')).toHaveAttribute('lang',lang);
   }
   await visit('/catalog');await page.locator('#category').selectOption(products[0].categorySlug);await page.locator('#brand').selectOption(products[0].brand);await page.locator('input[name=min]').fill(String(products[0].price));await page.locator('input[name=max]').fill(String(products[0].price));await page.locator('.filters button[type=submit]').click();await expect(page.locator('.product-card')).not.toHaveCount(0);
