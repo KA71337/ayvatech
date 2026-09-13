@@ -46,6 +46,11 @@ try {
   page.on('pageerror',error=>summary.browserErrors.push(error.message));
   page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('status of 401')&&!message.text().includes('status of 403')&&!message.text().includes('status of 409'))summary.browserErrors.push(message.text());});
   async function visit(url) { const response=await page.goto(url); assert.equal(response.status(),200,url); await page.locator('h1').first().waitFor(); }
+  async function chooseDropdown(id,value) {
+    const root=page.locator(`#${id}`).locator('..');
+    await root.locator('.custom-dropdown__trigger').click();
+    await root.locator(`[data-dropdown-option][data-value="${value}"]`).click();
+  }
   async function imagesWork() {
     await page.locator('img').evaluateAll(images=>images.forEach(img=>img.loading='eager'));
     await expect.poll(()=>page.locator('img').evaluateAll(images=>images.every(img=>img.complete&&img.naturalWidth>0)),{timeout:15000}).toBe(true);
@@ -107,11 +112,26 @@ try {
   await page.setViewportSize({width:1440,height:900});
   for(const p of products){await visit(`/product/${p.slug}`);await imagesWork();for(let i=0;i<p.images.length;i++){await page.locator('.gallery-thumbs button').nth(i).click();await imagesWork();}}
   for(const lang of ['ru','en','az']){
-    await page.locator('.language-dropdown-trigger').click();
-    await page.locator(`.language-dropdown-option[lang="${lang}"]`).click();await expect(page.locator('html')).toHaveAttribute('lang',lang);
+    await page.locator('#language').click();
+    await page.locator(`[data-dropdown-option][lang="${lang}"]`).click();await expect(page.locator('html')).toHaveAttribute('lang',lang);
     await page.goto('/');await expect(page.locator('html')).toHaveAttribute('lang',lang);
   }
-  await visit('/catalog');await page.locator('#category').selectOption(products[0].categorySlug);await page.locator('#brand').selectOption(products[0].brand);await page.locator('input[name=min]').fill(String(products[0].price));await page.locator('input[name=max]').fill(String(products[0].price));await page.locator('.filters button[type=submit]').click();await expect(page.locator('.product-card')).not.toHaveCount(0);
+  await visit('/catalog');
+  assert.equal(await page.locator('select').count(),0,'rendered catalog must contain no native selects');
+  const category=page.locator('#category');
+  await category.focus();await page.keyboard.press('ArrowDown');await expect(category).toHaveAttribute('aria-expanded','true');
+  await page.keyboard.press('End');await expect(page.locator('#category-options [data-dropdown-option]').last()).toBeFocused();
+  await page.keyboard.press('Home');await expect(page.locator('#category-options [data-dropdown-option]').first()).toBeFocused();
+  await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');await expect(category).toBeFocused();
+  await category.press('Space');await page.keyboard.press('Escape');await expect(category).toBeFocused();await expect(category).toHaveAttribute('aria-expanded','false');
+  await category.click();await page.locator('h1').click();await expect(category).toHaveAttribute('aria-expanded','false');
+  await category.click();await page.keyboard.press('Tab');await expect(category).toHaveAttribute('aria-expanded','false');
+  await page.locator('#spec').click();await expect(page.locator('#spec-options')).toBeVisible();await page.keyboard.press('Escape');
+  await chooseDropdown('category',products[0].categorySlug);await chooseDropdown('brand',products[0].brand);await chooseDropdown('sort','price-asc');
+  await page.locator('input[name=min]').fill(String(products[0].price));await page.locator('input[name=max]').fill(String(products[0].price));
+  assert.equal((await page.locator('.filters').evaluate(form=>Object.fromEntries(new FormData(form)))).sort,'price-asc');
+  await page.locator('.filters button[type=submit]').click();await expect(page.locator('.product-card')).not.toHaveCount(0);await expect(page).toHaveURL(/category=.*brand=.*sort=price-asc/);
+  await page.goBack();await expect(page).toHaveURL(/\/catalog$/);
   await visit('/catalog?page=2');await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href',canonicalOrigin+'/catalog?page=2');
   await visit('/catalog?q=no-such-product-xyz');await expect(page.locator('.empty-state')).toBeVisible();
   const sitemap=await context.request.get('/sitemap.xml');assert.equal(sitemap.status(),200);assert.equal(load(await sitemap.text(),{xmlMode:true})('url').length,(products.length+4)*3);
@@ -147,7 +167,7 @@ try {
   await page.locator('#slug').fill('e2e-isolated-product');
   await page.locator('#categorySlug').fill(original.categorySlug);
   await page.locator('#price').fill(String(original.price));
-  await page.locator('#status').selectOption('published');
+  await chooseDropdown('status','published');
   await page.locator('#add-spec').click();await page.locator('[data-spec-field=name]').fill('Model');await page.locator('[data-spec-field=value]').fill(original.title.az);
   const uploadedData={images:[]};
   for (const file of ['public'+original.images[0].original,'public'+multi.images[1].original]) {
@@ -175,7 +195,7 @@ try {
   await visit('/product/e2e-isolated-product');await expect(page.locator('h1')).toHaveText(original.title.az+' <script>alert(1)</script>');assert.equal(await page.locator('h1 script').count(),0);
   await visit('/en/product/e2e-isolated-product');await expect(page.locator('h1')).toHaveText('Localization test');await expect(page.locator('.description-text')).toHaveText('Isolated test description');
   await visit('/'); // A published manual product has no sourceUpdatedAt.
-  await visit(`/admin/product/${id}`);await page.locator('#status').selectOption('draft');await page.locator('button[type=submit]').click();await expect(page.locator('#editor-message')).toHaveText(savedMessage);
+  await visit(`/admin/product/${id}`);await chooseDropdown('status','draft');await page.locator('button[type=submit]').click();await expect(page.locator('#editor-message')).toHaveText(savedMessage);
   assert.equal((await context.request.get('/product/e2e-isolated-product')).status(),200,'Old deployment stays available until rebuild');
   await redeploy();
   assert.equal((await context.request.get('/product/e2e-isolated-product')).status(),404);

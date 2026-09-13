@@ -77,6 +77,13 @@ test('admin HTTP errors, login, durable CRUD, revisions and GitHub request contr
     const sessionCookie=login.headers.get('set-cookie').split(';')[0];
     const session=readSession({headers:{cookie:sessionCookie}});
     const headers={'content-type':'application/json',cookie:sessionCookie,'x-csrf-token':session.csrf};
+    for (const route of ['/admin','/admin/product/new','/admin/product/'+products[0].id]) {
+      const htmlResponse=await send(route,{headers:{cookie:sessionCookie}});
+      assert.equal(htmlResponse.status,200);
+      const html=await htmlResponse.text();
+      assert.doesNotMatch(html,/<select\b/i,route);
+      assert.match(html,/data-custom-dropdown/,route);
+    }
     const configuredToken=process.env.GITHUB_TOKEN;delete process.env.GITHUB_TOKEN;
     const unavailable=await send('/api/admin/products',{headers});assert.equal(unavailable.status,503);
     const safeError=await unavailable.text();assert.ok(!safeError.includes(password));assert.ok(!safeError.includes(configuredToken));
