@@ -1,12 +1,20 @@
 (() => {
   const roots = [...document.querySelectorAll('[data-custom-dropdown]')];
   let openRoot = null;
+  const closeTimers = new WeakMap();
   const options = root => [...root.querySelectorAll('[data-dropdown-option]')];
+  const finishClose = root => {
+    root.classList.remove('is-closing', 'opens-up');
+    root.querySelector('.custom-dropdown__menu').hidden = true;
+    closeTimers.delete(root);
+  };
   const close = (root, focus = false) => {
     if (!root) return;
-    root.classList.remove('is-open', 'opens-up');
+    clearTimeout(closeTimers.get(root));
+    root.classList.remove('is-open');
+    root.classList.add('is-closing');
     root.querySelector('.custom-dropdown__trigger').setAttribute('aria-expanded', 'false');
-    root.querySelector('.custom-dropdown__menu').hidden = true;
+    closeTimers.set(root, setTimeout(() => finishClose(root), 160));
     if (openRoot === root) openRoot = null;
     if (focus) root.querySelector('.custom-dropdown__trigger').focus();
   };
@@ -27,6 +35,9 @@
   };
   const open = (root, focusIndex) => {
     if (openRoot && openRoot !== root) close(openRoot);
+    clearTimeout(closeTimers.get(root));
+    closeTimers.delete(root);
+    root.classList.remove('is-closing');
     root.querySelector('.custom-dropdown__menu').hidden = false;
     position(root);
     root.classList.add('is-open');
@@ -89,8 +100,22 @@
       if (option.lang) try { localStorage.setItem('ayva.lang', option.lang); } catch {}
     });
   });
+  const sync = () => roots.forEach(root => {
+    const input = root.querySelector('[data-dropdown-input]');
+    if (!input) return;
+    const selected = options(root).find(option => option.dataset.value === input.value) || options(root)[0];
+    if (!selected) return;
+    root.dataset.value = selected.dataset.value || '';
+    root.querySelector('[data-dropdown-label]').textContent = selected.querySelector('span').textContent;
+    options(root).forEach(option => {
+      const isSelected = option === selected;
+      option.classList.toggle('is-selected', isSelected);
+      option.setAttribute('aria-selected', String(isSelected));
+    });
+  });
   document.addEventListener('pointerdown', event => { if (openRoot && !openRoot.contains(event.target)) close(openRoot); });
   addEventListener('resize', () => { if (openRoot) position(openRoot); });
   addEventListener('scroll', () => { if (openRoot) position(openRoot); }, true);
-  window.CustomDropdown = { close, open, select };
+  window.syncCustomSelects = sync;
+  window.CustomDropdown = { close, open, select, sync };
 })();
