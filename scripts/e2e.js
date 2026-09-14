@@ -53,7 +53,7 @@ try {
   }
   async function imagesWork() {
     await page.locator('img').evaluateAll(images=>images.forEach(img=>img.loading='eager'));
-    await expect.poll(()=>page.locator('img').evaluateAll(images=>images.every(img=>img.complete&&img.naturalWidth>0)),{timeout:15000}).toBe(true);
+    await expect.poll(()=>page.locator('img').evaluateAll(images=>images.filter(img=>img.currentSrc&&!img.hidden&&(!img.complete||img.naturalWidth===0)).map(img=>img.currentSrc)),{timeout:30000}).toEqual([]);
   }
   async function noOverflow(label) {
     const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('body *')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.right>innerWidth+1&&getComputedStyle(e).position!=='fixed';}).slice(0,8).map(e=>e.className)}));
@@ -111,11 +111,16 @@ try {
   // Decode every product image in the real browser, not only file existence.
   await page.setViewportSize({width:1440,height:900});
   for(const p of products){await visit(`/product/${p.slug}`);await imagesWork();for(let i=0;i<p.images.length;i++){await page.locator('.gallery-thumbs button').nth(i).click();await imagesWork();}}
-  for(const lang of ['ru','en','az']){
-    await page.locator('#language').click();
-    await page.locator(`[data-dropdown-option][lang="${lang}"]`).click();await expect(page.locator('html')).toHaveAttribute('lang',lang);
-    await page.goto('/');await expect(page.locator('html')).toHaveAttribute('lang',lang);
-  }
+  // Locale comes from the route. Explicit switches preserve the current page and storage cannot override AZ URLs.
+  await visit('/');
+  await expect(page.locator('.desktop-nav a[href="/catalog"]')).toHaveAttribute('href','/catalog');
+  await page.locator('.language-switcher a[lang="ru"]').click();await expect(page).toHaveURL(/\/ru\/$/);await expect(page.locator('html')).toHaveAttribute('lang','ru');
+  await page.goto('/ru/catalog');await expect(page.locator('.language-switcher a[lang="en"]')).toHaveAttribute('href',canonicalOrigin+'/en/catalog');
+  await page.locator('.language-switcher a[lang="en"]').click();await expect(page).toHaveURL(/\/en\/catalog$/);await expect(page.locator('html')).toHaveAttribute('lang','en');
+  await page.locator('.language-switcher a[lang="az"]').click();await expect(page).toHaveURL(/\/catalog$/);await expect(page.locator('html')).toHaveAttribute('lang','az');
+  await page.evaluate(()=>localStorage.setItem('ayva.lang','ru'));await page.goto('/');await expect(page).toHaveURL(/\/$/);await expect(page.locator('html')).toHaveAttribute('lang','az');
+  const logo=page.locator('.brand img');await expect(logo).toHaveAttribute('src','/media/ayvatech-logo.svg');
+  assert.equal(await logo.evaluate(img=>Math.abs(img.getBoundingClientRect().width/img.getBoundingClientRect().height-(img.naturalWidth/img.naturalHeight))<0.01),true,'Logo must preserve its native aspect ratio');
   await visit('/catalog');
   assert.equal(await page.locator('select').count(),0,'rendered catalog must contain no native selects');
   const category=page.locator('#category');

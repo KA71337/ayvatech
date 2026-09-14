@@ -31,7 +31,7 @@ test('build and public HTTP routes work without any admin/GitHub secrets or stor
     const media=await readdir(path.join(dir,'dist/media'));
     const shop=JSON.parse(await readFile('data/shop.json','utf8'));
     const referenced=new Set([...products.flatMap(p=>p.images),shop.logo,shop.cover].flatMap(i=>[i.src,i.original,...i.variants.map(v=>v.src)]));
-    for(const asset of ['/media/ayvatech-logo.png','/media/ayvatech-icon.png'])referenced.add(asset);
+    for(const asset of ['/media/ayvatech-logo.svg','/media/ayvatech-icon.png'])referenced.add(asset);
     assert.equal(media.length,referenced.size,'Only referenced product and branding images are published');
   } finally {if(server)await new Promise(resolve=>server.close(resolve));await rm(dir,{recursive:true,force:true});}
 });

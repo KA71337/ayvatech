@@ -25,7 +25,7 @@ for (const file of ['public/style.css','public/site.js','public/admin.js','views
 const products = JSON.parse(await readFile(path.join(dataDirectory,'products.json'), 'utf8')).map(p => productSchema.parse(p));
 const shop = JSON.parse(await readFile(path.join(dataDirectory,'shop.json'), 'utf8'));
 for (const field of ['id','slug','sourceId','sourceUrl']) { const values = products.map(p => p[field]).filter(Boolean); assert.equal(new Set(values).size, values.length, `Duplicate ${field}`); }
-const assets = new Set(['public/media/ayvatech-logo.png','public/media/ayvatech-icon.png']);
+const assets = new Set(['public/media/ayvatech-logo.svg','public/media/ayvatech-icon.png']);
 for (const image of [...products.flatMap(p => p.images), shop.logo, shop.cover]) {
   for (const file of [image.src, image.original, ...image.variants.map(v => v.src)]) assets.add('public'+file);
   for (const variant of image.variants) assert.equal((await sharp(await mediaFile('public'+variant.src)).metadata()).width, variant.width, variant.src);

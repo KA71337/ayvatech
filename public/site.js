@@ -1,9 +1,9 @@
-// Public language preference needs no server or authentication cookie.
+// The URL is the source of truth for locale; storage only remembers explicit choices.
 try {
-  document.querySelectorAll('[data-custom-dropdown] a[lang]').forEach(link => link.addEventListener('click', () => localStorage.setItem('ayva.lang', link.lang)));
-  const preferred = localStorage.getItem('ayva.lang');
-  if (location.pathname === '/' && ['ru','en'].includes(preferred)) location.replace('/' + preferred + '/');
-} catch { /* Storage can be disabled; AZ remains the default. */ }
+  const routeLocale = location.pathname.match(/^\/(ru|en)(?:\/|$)/)?.[1] || 'az';
+  localStorage.setItem('ayva.lang', routeLocale);
+  document.querySelectorAll('a[lang][hreflang]').forEach(link => link.addEventListener('click', () => localStorage.setItem('ayva.lang', link.lang)));
+} catch { /* Storage can be disabled; route-based locale still works. */ }
 const menu = document.querySelector('.menu-toggle');
 menu?.addEventListener('click', () => {
   const open = menu.getAttribute('aria-expanded') !== 'true';
