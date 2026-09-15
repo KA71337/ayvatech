@@ -1,5 +1,15 @@
 @layer reset,base,layout,components,responsive;
 @layer components{
+  .password-field{position:relative;isolation:isolate;width:100%}
+  .password-field input{position:relative;z-index:1;width:100%;padding-right:52px;pointer-events:auto!important;user-select:text}
+  .password-toggle{position:absolute;z-index:2;right:6px;top:50%;width:40px;height:40px;transform:translateY(-50%);display:grid;place-items:center;border:0;border-radius:8px;background:transparent;cursor:pointer;pointer-events:auto}
+  .password-toggle:hover,.password-toggle:focus-visible{background:#eef8fa;outline:2px solid #00b8ec}
+  .confirm-dialog{max-width:460px;padding:28px;border:0;border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.28)}
+  .confirm-dialog::backdrop{background:rgba(20,20,20,.55)}
+  .confirm-dialog h2{margin-bottom:24px;font-size:22px}
+  .confirm-dialog form>div{display:flex;justify-content:flex-end;gap:10px}
+}
+@layer components{
   :root{--media-radius:20px;--media-radius-small:12px;--card-media-radius:16px}
   .card-image,.hero-product,.gallery-main,.lightbox,.product-image-wrapper,.editor-image{border-radius:var(--media-radius);overflow:hidden}
   .card-image{border-radius:var(--card-media-radius)}

@@ -4,7 +4,7 @@ import { randomBytes } from 'node:crypto';
 import { readFile, mkdir, mkdtemp, copyFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { createGitHub, validateCatalogue } from '../lib/github.js';
-import { issueSession, readSession, cookie, checkPassword, requireCSRF, limitLogin } from '../lib/admin-session.js';
+import { authConfigured, issueSession, readSession, cookie, checkPassword, requireCSRF, limitLogin } from '../lib/admin-session.js';
 import { createAdminHandler } from '../api/admin.js';
 import { createPreview } from '../scripts/preview.js';
 import { githubFixture } from './helpers/github-fixture.js';
@@ -16,6 +16,10 @@ process.env.GITHUB_OWNER='test-owner';process.env.GITHUB_REPO='test-repo';proces
 process.env.NODE_ENV='test';
 const signedReq=value=>({headers:{cookie:'ayva.sid='+value}});
 test('signed expiring sessions, rotation, secure cookies and password comparison', async()=>{
+  const strongPassword=process.env.ADMIN_PASSWORD, strongSecret=process.env.SESSION_SECRET;
+  process.env.ADMIN_PASSWORD='short'; process.env.SESSION_SECRET='also-short';
+  assert.equal(authConfigured(),true,'present Vercel variables must not be reported as missing');
+  process.env.ADMIN_PASSWORD=strongPassword; process.env.SESSION_SECRET=strongSecret;
   const issued=issueSession(true);
   assert.equal(readSession(signedReq(issued.value)).admin,true);
   assert.equal(readSession(signedReq(issued.value+'tampered')),null);

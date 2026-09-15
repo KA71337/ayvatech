@@ -71,24 +71,24 @@ export function createAdminHandler(github=createGitHub()) {
         if (session?.admin) return redirect(res,'/admin');
         const issued=authConfigured()?issueSession():null;
         if (issued) res.setHeader('Set-Cookie',cookie(issued.value));
-        return await html(res,'login',{route:'/admin/login',lang,configured:authConfigured(),csrf:issued?.session.csrf||'',error:query.error?'Incorrect password. Please try again.':null});
+        return await html(res,'login',{route:'/admin/login',lang:'az',configured:authConfigured(),csrf:issued?.session.csrf||'',error:query.error?'Şifrə yanlışdır.':null});
       }
       if (route==='login') {
         method(req,['POST']);
-        if (!authConfigured()) throw new HttpError(503,'AUTH_CONFIG','Administration is not configured.');
+        if (!authConfigured()) throw new HttpError(503,'AUTH_CONFIG','İdarəetmə üçün serverdə ADMIN_PASSWORD və SESSION_SECRET təyin edin.');
         limitLogin(req);
         const body=await readBody(req);
         requireCSRF(req,session,body);
         if (!await checkPassword(body.password)) {
           if (req.headers['content-type']?.startsWith('application/x-www-form-urlencoded')) return redirect(res,'/admin/login?error=1');
-          throw new HttpError(401,'LOGIN_FAILED','Incorrect password.');
+          throw new HttpError(401,'LOGIN_FAILED','Şifrə yanlışdır.');
         }
         res.setHeader('Set-Cookie',cookie(issueSession(true).value));
         return redirect(res,'/admin');
       }
       if (!session?.admin) {
         if (route==='page' || route.startsWith('page/')) return redirect(res,'/admin/login');
-        throw new HttpError(401,'UNAUTHORIZED','Sign in to administration.');
+        throw new HttpError(401,'UNAUTHORIZED','İdarəetmə panelinə daxil olun.');
       }
       if (route==='logout') {
         method(req,['POST']);requireCSRF(req,session,await readBody(req));
@@ -148,7 +148,8 @@ export function createAdminHandler(github=createGitHub()) {
       const code=known?error.code:error.name==='ZodError'?'INVALID_INPUT':'INTERNAL';
       // Never log request bodies, headers, upstream responses or error stacks.
       console.error(JSON.stringify({event:'admin_request_failed',requestId,status,code}));
-      return json(res,status,{error:known?error.message:status===400?'Invalid product data.':'Unable to complete the request. Contact the administrator with the request ID.',code,requestId});
+      const safeError=known?(code.startsWith('GITHUB_')?'GitHub ilə əlaqə zamanı xəta baş verdi.':error.message):(status===400?'Məhsul məlumatları yanlışdır.':'Sorğunu tamamlamaq mümkün olmadı.');
+      return json(res,status,{error:safeError,code,requestId});
     }
   };
 }

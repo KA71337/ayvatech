@@ -1,3 +1,15 @@
+const passwordToggle = document.querySelector('.password-toggle');
+if (passwordToggle) {
+  const input = document.querySelector('#password');
+  passwordToggle.addEventListener('click', () => {
+    const visible = input.type === 'text';
+    input.type = visible ? 'password' : 'text';
+    passwordToggle.setAttribute('aria-pressed', String(!visible));
+    passwordToggle.setAttribute('aria-label', visible ? passwordToggle.dataset.show : passwordToggle.dataset.hide);
+    input.focus({ preventScroll: true });
+  });
+}
+
 const form = document.querySelector('#product-editor');
 if (form) {
   let product = JSON.parse(form.dataset.product) || { id: `manual-${crypto.randomUUID()}`, images: [], properties: [] };
@@ -79,8 +91,12 @@ if (form) {
     } catch (error) { showMessage(error.message); }
     finally { setBusy(false); }
   });
-  document.querySelector('#delete-product')?.addEventListener('click', async () => {
-    if (busy || !confirm(form.dataset.deleteConfirm)) return; setBusy(true);
+  const deleteDialog = document.querySelector('#delete-dialog');
+  document.querySelector('#delete-product')?.addEventListener('click', () => {
+    if (!busy) deleteDialog.showModal();
+  });
+  document.querySelector('#confirm-delete')?.addEventListener('click', async event => {
+    event.preventDefault(); if (busy) return; deleteDialog.close(); setBusy(true);
     try { await request(`/api/admin/products/${product.id}`, 'DELETE', { revision }); location.assign('/admin'); }
     catch (error) { showMessage(error.message); setBusy(false); }
   });
