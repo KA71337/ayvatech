@@ -29,16 +29,17 @@ npm run dev
 
 ### Environment template (no secrets)
 
-This workspace's agent security policy prevents access to `.env` and `.env.*`, including `.env.example`. The equivalent template is provided here; create `.env.example` manually if desired. Do not commit real credentials.
+Copy `.env.example` when configuring a local or hosted environment. Never commit real credentials.
 
 ```dotenv
 GITHUB_TOKEN=
 GITHUB_OWNER=KA71337
-GITHUB_REPO=
+GITHUB_REPO=ayvatech
 GITHUB_BRANCH=main
 GITHUB_PRODUCTS_PATH=data/products.json
 ADMIN_PASSWORD=
 SESSION_SECRET=
+SITE_URL=https://ayvatech.vercel.app
 ```
 
 Set `GITHUB_REPO=ayvatech` for this repository. Use a fine-grained GitHub token limited to this repository with **Contents: Read and write** permission. Store it only as a server-side `GITHUB_TOKEN`, never `NEXT_PUBLIC_*`. Neither the browser bundle nor HTML/API responses receive it. Do not paste secrets into issues, logs or chat.
