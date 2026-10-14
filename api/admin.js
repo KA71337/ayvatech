@@ -53,7 +53,8 @@ async function uploadImage(body, github) {
 }
 export function createAdminHandler(github=createGitHub()) {
   return async function handler(req,res) {
-    res.setHeader('Cache-Control','private, no-store');
+    res.setHeader('Cache-Control','private, no-store, no-cache, must-revalidate');
+    res.setHeader('Pragma','no-cache');
     res.setHeader('X-Robots-Tag','noindex, nofollow');
     res.setHeader('X-Content-Type-Options','nosniff');
     res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');

@@ -18,7 +18,7 @@ process.env.NODE_ENV='test';
 process.env.GITHUB_TOKEN='isolated-test-placeholder';
 process.env.GITHUB_OWNER='test-owner'; process.env.GITHUB_REPO='test-repo'; process.env.GITHUB_BRANCH='main';
 process.env.GITHUB_PRODUCTS_PATH='data/products.json';
-const canonicalOrigin='https://ayvatech.vercel.app';
+const canonicalOrigin='https://www.ayvatech.az';
 process.env.SITE_URL=canonicalOrigin;
 const fixture=await githubFixture(dir);
 const outputDirectory=path.join(dir,'dist');

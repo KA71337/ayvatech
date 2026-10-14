@@ -52,7 +52,7 @@ async function page(route,html) {
 }
 let pageCount=0;
 for (const lang of languages) {
-  for (const route of ['/','/catalog','/about','/contacts','/privacy',...published.map(p=>'/product/'+p.slug)]) {
+  for (const route of ['/','/catalog','/about','/contacts',...published.map(p=>'/product/'+p.slug)]) {
     const data={lang,route,products:published};let view;
     if (route==='/') {view='home';data.title=`AyvaTech — ${t('heroTitle',lang).replace('\n',' ')}`;}
     else if (route==='/catalog') {view='catalog';data.result=filterProducts(published,{},lang);}
@@ -66,8 +66,8 @@ for (const lang of languages) {
 }
 await page('/404',await render('info',{route:'/404',kind:'notFound',noindex:true,title:t('notFound')}));
 const paths=['/','/catalog','/about','/contacts',...published.map(p=>'/product/'+p.slug)];
-await writeFile(path.join(outputDirectory,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${paths.flatMap(p=>languages.map(l=>`<url><loc>${escapeXML(base+prefix(l)+p)}</loc>${languages.map(a=>`<xhtml:link rel="alternate" hreflang="${a}" href="${escapeXML(base+prefix(a)+p)}"/>`).join('')}</url>`)).join('')}</urlset>`);
-await writeFile(path.join(outputDirectory,'robots.txt'),`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: ${base}/sitemap.xml\n`);
+await writeFile(path.join(outputDirectory,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${paths.flatMap(p=>languages.map(l=>`<url><loc>${escapeXML(base+prefix(l)+p)}</loc>${languages.map(a=>`<xhtml:link rel="alternate" hreflang="${a}" href="${escapeXML(base+prefix(a)+p)}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${escapeXML(base+prefix('az')+p)}"/></url>`)).join('')}</urlset>`);
+await writeFile(path.join(outputDirectory,'robots.txt'),`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/admin\n\nSitemap: ${base}/sitemap.xml\n`);
 console.log(`Build OK: ${checked} JavaScript files, ${pageCount+1} static pages, ${products.length} products, ${assets.size} image files validated. Output: ${outputDirectory}. No GitHub API or admin secrets required.`);
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await build();

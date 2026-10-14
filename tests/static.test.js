@@ -7,7 +7,7 @@ import { createPreview } from '../scripts/preview.js';
 import { createAdminHandler } from '../api/admin.js';
 
 test('build and public HTTP routes work without any admin/GitHub secrets or storage requests',async()=>{
-  for(const key of ['GITHUB_TOKEN','GITHUB_OWNER','GITHUB_REPO','GITHUB_BRANCH','GITHUB_PRODUCTS_PATH','ADMIN_PASSWORD','SESSION_SECRET','SITE_URL'])delete process.env[key];
+  for(const key of ['GITHUB_TOKEN','GITHUB_OWNER','GITHUB_REPO','GITHUB_BRANCH','GITHUB_PRODUCTS_PATH','ADMIN_PASSWORD','SESSION_SECRET','SITE_URL','NEXT_PUBLIC_SITE_URL'])delete process.env[key];
   await mkdir('.test-data',{recursive:true});
   const dir=await mkdtemp(path.resolve('.test-data','static-'));
   let server;

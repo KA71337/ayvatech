@@ -39,16 +39,17 @@ GITHUB_BRANCH=main
 GITHUB_PRODUCTS_PATH=data/products.json
 ADMIN_PASSWORD=
 SESSION_SECRET=
-SITE_URL=https://ayvatech.vercel.app
+NEXT_PUBLIC_SITE_URL=https://www.ayvatech.az
+SITE_URL=https://www.ayvatech.az
 ```
 
 Set `GITHUB_REPO=ayvatech` for this repository. Use a fine-grained GitHub token limited to this repository with **Contents: Read and write** permission. Store it only as a server-side `GITHUB_TOKEN`, never `NEXT_PUBLIC_*`. Neither the browser bundle nor HTML/API responses receive it. Do not paste secrets into issues, logs or chat.
 
-`ADMIN_PASSWORD` must be unique and at least 16 characters. `SESSION_SECRET` must be independent, cryptographically random, at least 32 characters. Optional `SITE_URL` defaults to `https://ayvatech.vercel.app`; change it to the real HTTPS canonical origin when using a custom domain. Set it to the corresponding origin for each enabled admin deployment so CSRF origin checks match. Local preview accepts secrets already injected in the process environment; it does not read `.env` files.
+`ADMIN_PASSWORD` must be unique and at least 16 characters. `SESSION_SECRET` must be independent, cryptographically random, at least 32 characters. `NEXT_PUBLIC_SITE_URL` and `SITE_URL` default to `https://www.ayvatech.az`. Trusted origins for CSRF validation include `https://www.ayvatech.az` and `https://ayvatech.az`. Local preview accepts secrets already injected in the process environment; it does not read `.env` files.
 
 ### Sessions and API
 
-A one-hour, HMAC-signed session cookie is verified **server-side on every admin request**. Production uses Secure, HttpOnly, SameSite=Strict. Password rotation invalidates all cookies. Logout clears the browser cookie; as with other stateless sessions, a stolen cookie remains valid until expiry or secret/password rotation. Mutation requests require a session-bound CSRF token and same-origin checks. No SQLite/Redis/session database is used.
+A one-hour, HMAC-signed session cookie is verified **server-side on every admin request**. Production uses Secure, HttpOnly, SameSite=Lax. Password rotation invalidates all cookies. Logout clears the browser cookie; as with other stateless sessions, a stolen cookie remains valid until expiry or secret/password rotation. Mutation requests require a session-bound CSRF token and same-origin checks. No SQLite/Redis/session database is used.
 
 The only deployed function is `api/admin.js`; rewrites provide:
 

@@ -92,11 +92,16 @@ if (form) {
     finally { setBusy(false); }
   });
   const deleteDialog = document.querySelector('#delete-dialog');
-  document.querySelector('#delete-product')?.addEventListener('click', () => {
-    if (!busy) deleteDialog.showModal();
+  document.querySelector('#delete-product')?.addEventListener('click', async () => {
+    if (busy) return;
+    if (confirm(form.dataset.deleteConfirm)) {
+      setBusy(true);
+      try { await request(`/api/admin/products/${product.id}`, 'DELETE', { revision }); location.assign('/admin'); }
+      catch (error) { showMessage(error.message); setBusy(false); }
+    }
   });
   document.querySelector('#confirm-delete')?.addEventListener('click', async event => {
-    event.preventDefault(); if (busy) return; deleteDialog.close(); setBusy(true);
+    event.preventDefault(); if (busy) return; deleteDialog?.close(); setBusy(true);
     try { await request(`/api/admin/products/${product.id}`, 'DELETE', { revision }); location.assign('/admin'); }
     catch (error) { showMessage(error.message); setBusy(false); }
   });
