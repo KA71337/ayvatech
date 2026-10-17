@@ -5,13 +5,54 @@ try {
   document.querySelectorAll('a[lang][hreflang]').forEach(link => link.addEventListener('click', () => localStorage.setItem('ayva.lang', link.lang)));
 } catch { /* Storage can be disabled; route-based locale still works. */ }
 const menu = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('#mobile-menu');
+
+function openMenu() {
+  if (!menu || !mobileMenu) return;
+  menu.setAttribute('aria-expanded', 'true');
+  mobileMenu.hidden = false;
+  requestAnimationFrame(() => {
+    mobileMenu.classList.add('is-open');
+  });
+  document.body.classList.add('menu-open');
+  document.documentElement.classList.add('menu-open');
+}
+
+function closeMenu() {
+  if (!menu || !mobileMenu) return;
+  menu.setAttribute('aria-expanded', 'false');
+  mobileMenu.classList.remove('is-open');
+  document.body.classList.remove('menu-open');
+  document.documentElement.classList.remove('menu-open');
+  setTimeout(() => {
+    if (menu.getAttribute('aria-expanded') === 'false') {
+      mobileMenu.hidden = true;
+    }
+  }, 240);
+}
+
 menu?.addEventListener('click', () => {
   const open = menu.getAttribute('aria-expanded') !== 'true';
-  menu.setAttribute('aria-expanded', String(open));
-  document.querySelector('#mobile-menu').hidden = !open;
+  if (open) openMenu(); else closeMenu();
 });
-document.querySelector('#mobile-menu')?.addEventListener('click', event => {
-  if (event.target.closest('a')) { menu.setAttribute('aria-expanded', 'false'); document.querySelector('#mobile-menu').hidden = true; }
+
+mobileMenu?.addEventListener('click', event => {
+  if (event.target.closest('a')) closeMenu();
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {
+    closeMenu();
+    menu.focus();
+  }
+});
+
+document.addEventListener('click', event => {
+  if (menu?.getAttribute('aria-expanded') === 'true') {
+    if (!event.target.closest('#mobile-menu') && !event.target.closest('.menu-toggle')) {
+      closeMenu();
+    }
+  }
 });
 document.querySelector('.filter-toggle')?.addEventListener('click', event => {
   const button = event.currentTarget;

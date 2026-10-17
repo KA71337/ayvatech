@@ -38,7 +38,7 @@ const products=JSON.parse(await readFile('data/products.json','utf8'));
 const multi=products.find(p=>p.images.length>1);
 const savedMessage=t('saved','az')+' Saved to GitHub. Public pages update after the Vercel deployment completes.';
 let browser;
-const summary={productPages:0,responsivePages:0,widths:[320,375,390,430,768,1024,1280,1440],browserErrors:[]};
+const summary={productPages:0,responsivePages:0,widths:[320,360,375,390,412,430,480,768,1024,1280,1440],browserErrors:[]};
 try {
   browser=await chromium.launch();
   const context=await browser.newContext({baseURL:base});
@@ -97,8 +97,13 @@ try {
     }
     await visit('/');
     if(width<=1024){
+      await expect(page.locator('.menu-toggle span')).toHaveCount(3);
       await page.locator('.menu-toggle').click();await expect(page.locator('#mobile-menu')).toBeVisible();
+      await expect(page.locator('#mobile-menu .language-switcher')).toBeVisible();
       await expect(page.locator('#mobile-menu a[href^="tel:"]')).toBeVisible();
+      await page.keyboard.press('Escape');
+      await expect(page.locator('#mobile-menu')).not.toBeVisible();
+      await page.locator('.menu-toggle').click();await expect(page.locator('#mobile-menu')).toBeVisible();
       await page.locator('#mobile-menu a[href="/catalog"]').click();await expect(page).toHaveURL(/\/catalog$/);
       await page.locator('.menu-toggle').click();await page.locator('#mobile-menu a[href="/catalog#search"]').click();
       await expect(page.locator('#search')).toBeVisible();await expect(page.locator('#search')).toBeFocused();
@@ -114,10 +119,10 @@ try {
   // Locale comes from the route. Explicit switches preserve the current page and storage cannot override AZ URLs.
   await visit('/');
   await expect(page.locator('.desktop-nav a[href="/catalog"]')).toHaveAttribute('href','/catalog');
-  await page.locator('.language-switcher a[lang="ru"]').click();await expect(page).toHaveURL(/\/ru\/$/);await expect(page.locator('html')).toHaveAttribute('lang','ru');
-  await page.goto('/ru/catalog');await expect(page.locator('.language-switcher a[lang="en"]')).toHaveAttribute('href',canonicalOrigin+'/en/catalog');
-  await page.locator('.language-switcher a[lang="en"]').click();await expect(page).toHaveURL(/\/en\/catalog$/);await expect(page.locator('html')).toHaveAttribute('lang','en');
-  await page.locator('.language-switcher a[lang="az"]').click();await expect(page).toHaveURL(/\/catalog$/);await expect(page.locator('html')).toHaveAttribute('lang','az');
+  await page.locator('.header-actions .language-switcher a[lang="ru"]').click();await expect(page).toHaveURL(/\/ru\/$/);await expect(page.locator('html')).toHaveAttribute('lang','ru');
+  await page.goto('/ru/catalog');await expect(page.locator('.header-actions .language-switcher a[lang="en"]')).toHaveAttribute('href',canonicalOrigin+'/en/catalog');
+  await page.locator('.header-actions .language-switcher a[lang="en"]').click();await expect(page).toHaveURL(/\/en\/catalog$/);await expect(page.locator('html')).toHaveAttribute('lang','en');
+  await page.locator('.header-actions .language-switcher a[lang="az"]').click();await expect(page).toHaveURL(/\/catalog$/);await expect(page.locator('html')).toHaveAttribute('lang','az');
   await page.evaluate(()=>localStorage.setItem('ayva.lang','ru'));await page.goto('/');await expect(page).toHaveURL(/\/$/);await expect(page.locator('html')).toHaveAttribute('lang','az');
   const logo=page.locator('.brand img');await expect(logo).toHaveAttribute('src','/media/ayvatech-logo.svg');
   assert.equal(await logo.evaluate(img=>Math.abs(img.getBoundingClientRect().width/img.getBoundingClientRect().height-(img.naturalWidth/img.naturalHeight))<0.01),true,'Logo must preserve its native aspect ratio');

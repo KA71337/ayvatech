@@ -54,19 +54,29 @@ let pageCount=0;
 for (const lang of languages) {
   for (const route of ['/','/catalog','/about','/contacts',...published.map(p=>'/product/'+p.slug)]) {
     const data={lang,route,products:published};let view;
-    if (route==='/') {view='home';data.title=`AyvaTech — ${t('heroTitle',lang).replace('\n',' ')}`;}
-    else if (route==='/catalog') {view='catalog';data.result=filterProducts(published,{},lang);}
+    if (route==='/') {view='home';data.title=t('homeTitle',lang);data.metaDescription=t('homeDescription',lang);}
+    else if (route==='/catalog') {view='catalog';data.title=t('catalogTitle',lang);data.metaDescription=t('catalogDescription',lang);data.result=filterProducts(published,{},lang);}
     else if (route.startsWith('/product/')) {
       view='product';data.product=published.find(p=>p.slug===route.slice(9));
       data.related=published.filter(p=>p.categorySlug===data.product.categorySlug&&p.id!==data.product.id).slice(0,4);
       data.title=localized(data.product.title,lang)+' | AyvaTech';data.metaDescription=localized(data.product.description,lang);
-    } else {view='info';data.kind=route==='/contacts'?'contact':route.slice(1);}
+    } else {
+      view='info';data.kind=route==='/contacts'?'contact':route.slice(1);
+      data.title=`${t(data.kind,lang)} | AyvaTech`;
+      data.metaDescription=t(data.kind==='contact'?'contactDescription':'aboutDescription',lang);
+    }
     await page(prefix(lang)+route,await render(view,data));pageCount++;
   }
 }
 await page('/404',await render('info',{route:'/404',kind:'notFound',noindex:true,title:t('notFound')}));
 const paths=['/','/catalog','/about','/contacts',...published.map(p=>'/product/'+p.slug)];
-await writeFile(path.join(outputDirectory,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${paths.flatMap(p=>languages.map(l=>`<url><loc>${escapeXML(base+prefix(l)+p)}</loc>${languages.map(a=>`<xhtml:link rel="alternate" hreflang="${a}" href="${escapeXML(base+prefix(a)+p)}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${escapeXML(base+prefix('az')+p)}"/></url>`)).join('')}</urlset>`);
+const sitemapEntries = paths.flatMap(p=>languages.map(l=>{
+  const loc = escapeXML(base+prefix(l)+p);
+  const alternates = languages.map(a=>`    <xhtml:link rel="alternate" hreflang="${a}" href="${escapeXML(base+prefix(a)+p)}"/>`).join('\n');
+  const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXML(base+prefix('az')+p)}"/>`;
+  return `  <url>\n    <loc>${loc}</loc>\n${alternates}\n${xDefault}\n  </url>`;
+})).join('\n');
+await writeFile(path.join(outputDirectory,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapEntries}\n</urlset>\n`);
 await writeFile(path.join(outputDirectory,'robots.txt'),`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/admin\n\nSitemap: ${base}/sitemap.xml\n`);
 console.log(`Build OK: ${checked} JavaScript files, ${pageCount+1} static pages, ${products.length} products, ${assets.size} image files validated. Output: ${outputDirectory}. No GitHub API or admin secrets required.`);
 }
